@@ -9,8 +9,12 @@ https://docs.google.com/document/d/1K90yQdH8jT7MRap2XdlgYYklIc87Nl4VKRE1OezGb_4/
 Best practices:
 
     Coding Standards:
+    
+        golang:
     https://google.github.io/styleguide/go/guide
     https://google.github.io/styleguide/go/decisions
+        AngularJS:
+    https://angular.dev/style-guide#style-vocabulary
 
         tldr;
         Use camelcase please
