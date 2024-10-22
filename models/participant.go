@@ -14,4 +14,6 @@ type Participant struct {
 	VerificationExperationDate time.Time          `bson:"verificationExperationDate" json:"verificationExperationDate"`
 	CreatedAt                  time.Time          `bson:"createdAt" json:"createdAt"`
 	CombatType                 string             `bson:"combatType" json:"combatType"`
+	Kingdom                    string             `bson:"kingdom" json:"kingdom"`
+	TournamentParticipantIn    []string           `bson:"tournamentParticipantIn" json:"tournamentParticipantIn"`
 }

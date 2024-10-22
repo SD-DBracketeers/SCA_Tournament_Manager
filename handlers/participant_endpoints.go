@@ -116,6 +116,8 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 				"rank":                       updatedParticipant.Rank,
 				"verificationExperationDate": updatedParticipant.VerificationExperationDate,
 				"combatType":                 updatedParticipant.CombatType,
+				"kingdom":                    updatedParticipant.Kingdom,
+				"tournamentParticipantIn":    updatedParticipant.TournamentParticipantIn,
 			},
 		}
 
