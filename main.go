@@ -35,11 +35,14 @@ func connectDB() (*mongo.Client, error) {
 
 	// Ensure the required variables are set
 	if username == "" || password == "" || clusterName == "" || databaseName == "" {
+		fmt.Printf("Username: %s\nPassword: %s\n clusterName: %s\n databaseName: %s\n", username, password, clusterName, databaseName)
 		log.Fatal("Missing required environment variables for MongoDB connection")
 	}
 
 	// Create the SRV connection string
-	uri := fmt.Sprintf("mongodb+srv://%s:%s@%s.w14yw.mongodb.net/%s?retryWrites=true&w=majority", username, password, clusterName, databaseName)
+
+	//mongodb+srv://yashchoksey:<db_password>@scatournamentmanager.zf7py.mongodb.net/?retryWrites=true&w=majority&appName=SCATournamentManager
+	uri := fmt.Sprintf("mongodb+srv://%s:%s@%s.zf7py.mongodb.net/%s?retryWrites=true&w=majority", username, password, clusterName, databaseName)
 
 	// Set client options
 	clientOptions := options.Client().ApplyURI(uri)
