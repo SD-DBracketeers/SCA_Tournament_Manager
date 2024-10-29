@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 
 	"api/models"
 	"api/utils"
@@ -17,7 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetParticipants retrieves all tournaments from the MongoDB collection
+// GetTournaments retrieves all tournaments from the MongoDB collection
 func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournaments []models.Tournament
@@ -39,28 +38,27 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	}
 }
 
-// CreateParticipant inserts a new participant into the MongoDB collection
+// CreateTournament inserts a new tournament into the MongoDB collection
 func CreateTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var participant models.Participant
-		json.NewDecoder(r.Body).Decode(&participant)
-		participant.CreatedAt = time.Now()
+		var tournament models.Tournament
+		json.NewDecoder(r.Body).Decode(&tournament)
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
 		if err != nil {
 			http.Error(w, "Error generating id value", http.StatusInternalServerError)
 			return
 		}
-		participant.ParticipantNanoID = nanoID
+		tournament.TournamentNanoID = nanoID
 
-		collection := db.Collection("Participants")
-		result, err := collection.InsertOne(context.Background(), participant)
+		collection := db.Collection("Tournament")
+		result, err := collection.InsertOne(context.Background(), tournament)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Fprintf(w, "Participant created with ID: %v", result.InsertedID)
+		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
 	}
 }
 
