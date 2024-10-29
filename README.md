@@ -26,3 +26,8 @@ Best practices:
     Languages and database:
         Languages:  Angular JS, golang
         Database: mongoDB
+
+Third-party resources:
+    https://material.angular.io/components/input/overview
+    https://material.angular.io/components/datepicker/overview
+    https://material.angular.io/components/form-field/overview

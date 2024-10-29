@@ -3,20 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputComponent } from './input/input.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
     HeaderComponent,
     FooterComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    InputComponent,
+    DatePickerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
