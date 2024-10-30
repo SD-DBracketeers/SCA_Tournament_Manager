@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tournament-info',
@@ -7,12 +7,19 @@ import { Component, OnInit } from '@angular/core';
   
 })
 export class TournamentInfoComponent implements OnInit {
+  @Input() kingdomImageId: string = '0';
   kingdomImageUrl: string = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
-  title: string = 'Tournament A';
-  description: string = 'Description for tournament A goes here';
+  @Input() title: string = '';
+  @Input() description: string = '';
   constructor() { }
 
   ngOnInit(): void {
-    
+    if (this.kingdomImageId == '0') {
+      this.kingdomImageUrl = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
+    } else if (this.kingdomImageId == '1') {
+      this.kingdomImageUrl = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
+    } else {
+      this.kingdomImageUrl = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
+    }
   }
 }

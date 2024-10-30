@@ -18,6 +18,7 @@ import { TournamentInfoComponent } from './tournament-info/tournament-info.compo
 import { FormsModule } from '@angular/forms';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { GetParticipantsService } from './get-participants.service';
+import { GetTournamentService } from './get-tournament.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,10 @@ import { GetParticipantsService } from './get-participants.service';
   ],
   exports: [BackButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [GetParticipantsService],
+  providers: [
+    GetParticipantsService,
+    GetTournamentService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

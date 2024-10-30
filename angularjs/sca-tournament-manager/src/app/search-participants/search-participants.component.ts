@@ -16,36 +16,7 @@ export class SearchParticipantsComponent implements OnInit {
 
   searchQuery: string = ''; // Bound to the search input field
 
-  participants = [
-    {
-      name: 'Guy Smith',
-      rank: 'Knight',
-      combatType: 'Heavy',
-      verificationExperationDate: '9/27/24',
-      kingdom: 'Ansteorra',
-    },
-    {
-      name: 'Girl Stone',
-      rank: 'MoD',
-      combatType: 'Rapier',
-      verificationExperationDate: '10/27/24',
-      kingdom: 'Ansteorra',
-    },
-    {
-      name: 'Person Miller',
-      rank: 'AoA',
-      combatType: 'Rapier',
-      verificationExperationDate: '11/05/24',
-      kingdom: 'Ansteorra',
-    },
-    {
-      name: 'Guy Smith',
-      rank: 'Knight',
-      combatType: 'Heavy',
-      verificationExperationDate: '9/27/24',
-      kingdom: 'Ansteorra',
-    },
-  ];
+  participants: {name: string, rank: string, combatType: string, verificationExperationDate: string, kingdom: string}[] = []
 
   ngOnInit(): void {
     this.getParticipants.getParticipants().subscribe((data) =>{
