@@ -1,0 +1,114 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #ffff00; /* Outer border color */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden;
+}
+
+.table th {
+  color: #ffff00;
+  border-bottom: 2px solid #ffff00;
+}
+
+.table td {
+  color: #ffffff;
+  background-color: #36454f;
+  border: none; /* Remove vertical borders */
+}
+
+.table thead tr {
+  background-color: #36454f;
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px; /* Bottom-left rounded corner */
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px; /* Bottom-right rounded corner */
+}
+
+.btn-outline-light {
+  border-color: #36454f;
+  color: #36454f;
+}
+
+.btn-outline-light:hover {
+  background-color: #ffff00;
+  color: #000;
+}
+
+.btn-warning {
+  background-color: #ffff00;
+  color: #000;
+  border: none;
+}
+
+.example-form {
+  margin-bottom: 20px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #ffff00;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: #36454f;
+  color: #ffffff;
+}
+
+.input-group-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: #36454f;
+}
+
+.input-group-addon:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #ffff00;
+  color: #000;
+}
+
+.input-group-addon i {
+  font-size: 16px;
+}
+
+.back-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ffff00; /* Yellow color for consistency */
+    background: none;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .arrow {
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,53 @@
+<div class="container my-5">
+  <div class="back-button" (click)="goBack()">
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    <!-- Unicode for a left arrow -->
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-wrapper">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search participants..."
+      [(ngModel)]="searchQuery"
+      name="search"
+    />
+    <button class="input-group-addon">
+      <i class="glyphicon glyphicon-search"></i>
+    </button>
+  </div>
+
+  <!-- Participant List -->
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Combat Type</th>
+        <th>Expires</th>
+        <th>Kingdom</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let participant of participants">
+        <td>{{ participant.name }}</td>
+        <td>{{ participant.rank }}</td>
+        <td>{{ participant.combatType }}</td>
+        <td>{{ participant.expires }}</td>
+        <td>{{ participant.kingdom }}</td>
+        <td>
+          <button class="btn btn-outline-light btn-sm ml-2">
+            <i class="glyphicon glyphicon-pencil"></i>
+          </button>
+          <button class="btn btn-outline-light btn-sm">
+            <i class="glyphicon glyphicon-plus"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-warning mt-3">Add new</button>
+</div>

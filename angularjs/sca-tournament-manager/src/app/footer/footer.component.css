@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end; /* Align button to the right */
-    background-color: transparent; /* Keep footer background transparent */
+    background-color: #36454F;
   }
   
   /* Button styling */
