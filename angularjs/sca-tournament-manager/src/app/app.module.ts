@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { TournamentInfoComponent } from './tournament-info/tournament-info.compo
 
 import { FormsModule } from '@angular/forms';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { GetParticipantsService } from './get-participants.service';
 
 @NgModule({
   declarations: [
@@ -35,10 +37,11 @@ import { BackButtonComponent } from './back-button/back-button.component';
     DatePickerComponent,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule
   ],
   exports: [BackButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [GetParticipantsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

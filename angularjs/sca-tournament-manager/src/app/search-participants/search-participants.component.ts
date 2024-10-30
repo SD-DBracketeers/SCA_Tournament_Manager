@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { GetParticipantsService } from '../get-participants.service';
 
 @Component({
   selector: 'app-search-participants',
   templateUrl: './search-participants.component.html',
   styleUrls: ['./search-participants.component.css'],
 })
-export class SearchParticipantsComponent {
-  constructor(private location: Location) {}
+export class SearchParticipantsComponent implements OnInit {
+  constructor(private location: Location, public getParticipants: GetParticipantsService) {}
 
   goBack(): void {
     this.location.back(); // Navigate to the previous page for back arrow
@@ -20,29 +21,39 @@ export class SearchParticipantsComponent {
       name: 'Guy Smith',
       rank: 'Knight',
       combatType: 'Heavy',
-      expires: '9/27/24',
+      verificationExperationDate: '9/27/24',
       kingdom: 'Ansteorra',
     },
     {
       name: 'Girl Stone',
       rank: 'MoD',
       combatType: 'Rapier',
-      expires: '10/27/24',
+      verificationExperationDate: '10/27/24',
       kingdom: 'Ansteorra',
     },
     {
       name: 'Person Miller',
       rank: 'AoA',
       combatType: 'Rapier',
-      expires: '11/05/24',
+      verificationExperationDate: '11/05/24',
       kingdom: 'Ansteorra',
     },
     {
       name: 'Guy Smith',
       rank: 'Knight',
       combatType: 'Heavy',
-      expires: '9/27/24',
+      verificationExperationDate: '9/27/24',
       kingdom: 'Ansteorra',
     },
   ];
+
+  ngOnInit(): void {
+    this.getParticipants.getParticipants().subscribe((data) =>{
+      var entries = Object.entries(data);
+      entries.forEach(key => {
+        this.participants.push(key[1]);
+      })
+    });
+    
+  }
 }
