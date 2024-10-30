@@ -20,7 +20,7 @@ import (
 // GetParticipants retrieves all participants from the MongoDB collection
 func GetParticipants(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var users []models.Participant
+		var participants []models.Participant
 		collection := db.Collection("Participants")
 		cursor, err := collection.Find(context.Background(), bson.M{})
 		if err != nil {
@@ -30,12 +30,12 @@ func GetParticipants(db *mongo.Database) http.HandlerFunc {
 		defer cursor.Close(context.Background())
 
 		for cursor.Next(context.Background()) {
-			var user models.Participant
-			cursor.Decode(&user)
-			users = append(users, user)
+			var participant models.Participant
+			cursor.Decode(&participant)
+			participants = append(participants, participant)
 		}
 
-		json.NewEncoder(w).Encode(users)
+		json.NewEncoder(w).Encode(participants)
 	}
 }
 
@@ -64,7 +64,7 @@ func CreateParticipant(db *mongo.Database) http.HandlerFunc {
 	}
 }
 
-// GetParticipant retrieves a user by their UserNanoID
+// GetParticipant retrieves a participant by their ParticipantNanoID
 func GetParticipant(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the participantNanoID from the URL parameters
@@ -75,7 +75,7 @@ func GetParticipant(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
-		// Query the database for the user
+		// Query the database for the participant
 		var participant models.Participant
 		collection := db.Collection("Participants")
 		err := collection.FindOne(context.Background(), bson.M{"participantNanoID": participantNanoID}).Decode(&participant)
@@ -84,25 +84,25 @@ func GetParticipant(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
-		// Return the user as JSON
+		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(participant)
 	}
 }
 
-// UpdateParticipant updates a user's information based on their ParticipantNanoID
+// UpdateParticipant updates a participant's information based on their ParticipantNanoID
 func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Get the UserNanoID from the URL parameters
+		// Get the ParticipantNanoID from the URL parameters
 
 		vars := mux.Vars(r)                                // Get URL parameters using gorilla/mux
-		participantNanoID, ok := vars["participantNanoID"] // Extract userNanoID from the route
+		participantNanoID, ok := vars["participantNanoID"] // Extract participantNanoID from the route
 		if !ok || participantNanoID == "" {
 			http.Error(w, "Missing participantNanoID", http.StatusBadRequest)
 			return
 		}
 
-		// Decode the request body into a User struct
+		// Decode the request body into a Participant struct
 		var updatedParticipant models.Participant
 		if err := json.NewDecoder(r.Body).Decode(&updatedParticipant); err != nil {
 			http.Error(w, "Invalid request payload", http.StatusBadRequest)
@@ -121,7 +121,7 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 			},
 		}
 
-		// Update the user in the database
+		// Update the participant in the database
 		collection := db.Collection("Participants")
 		_, err := collection.UpdateOne(
 			context.Background(),
