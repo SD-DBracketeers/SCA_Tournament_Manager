@@ -18,6 +18,7 @@ import (
 )
 
 // GetTournaments retrieves all tournaments from the MongoDB collection
+// GetTournaments retrieves all tournaments from the MongoDB collection
 func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournaments []models.Tournament
@@ -40,6 +41,7 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 }
 
 // CreateTournament inserts a new tournament into the MongoDB collection
+// CreateTournament inserts a new tournament into the MongoDB collection
 func CreateTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournament models.Tournament
@@ -52,6 +54,7 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 		tournament.TournamentNanoID = nanoID
+		tournament.TournamentNanoID = nanoID
 
 		collection := db.Collection("Tournaments")
 		result, err := collection.InsertOne(context.Background(), tournament)
@@ -60,6 +63,7 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
+		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
 		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
 	}
 }
