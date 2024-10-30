@@ -26,3 +26,18 @@ Best practices:
     Languages and database:
         Languages:  Angular JS, golang
         Database: mongoDB
+
+How to initalize and run backend using Go
+
+    Install go using go version to test if you have it. If not install it from Go's offical website https://go.dev/dl/
+
+    Setup Environment Varibles file. This env file has the usename, password, and clustername of the mongodb database. Contact Yash Choksey for this information.
+
+    Install all of the dependencies listed in the go.mod file. This can be done simply using the command "go mod tidy"
+
+    Verify MongoDB access and make sure your IP address is whitelisted. If not contact a member of the team
+
+    Run the backend using "go run". Make sure you are in the base directory when running this command
+
+    
+    Alternatively you can run the unit tests for the handlers by navigating to the handlers folder and running "go test"

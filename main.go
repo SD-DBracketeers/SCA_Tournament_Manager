@@ -84,16 +84,11 @@ func main() {
 	router.HandleFunc("/participants/{participantNanoID}", handlers.GetParticipant(db)).Methods("GET")
 	router.HandleFunc("/participants/{participantNanoID}", handlers.UpdateParticipant(db)).Methods("PUT")
 
-	// Projects routes
-
-	// Tasks routes
-
-	// Other task routes: router.HandleFunc("/tasks/{id}", getTaskById).Methods("GET"), etc.
-
-	// ChatBotInput routes
-
-	// Meetings routes
-	// Other meeting routes: router.HandleFunc("/meetings/{id}", getMeetingById).Methods("GET"), etc.
+	//Tournament routes
+	router.HandleFunc("/tournaments", handlers.GetTournaments(db)).Methods("GET")
+	router.HandleFunc("/tournaments", handlers.CreateTournament(db)).Methods("POST")
+	router.HandleFunc("/tournaments/{tournamentNanoID}", handlers.GetTournament(db)).Methods("GET")
+	router.HandleFunc("/tournaments/{tournamentNanoID}", handlers.UpdateTournament(db)).Methods("PUT")
 
 	// Start the server
 	log.Fatal(http.ListenAndServe(":8080", router))
