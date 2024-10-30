@@ -14,6 +14,7 @@ import { InputComponent } from './input/input.component';
 import { SearchParticipantsComponent } from './search-participants/search-participants.component';
 
 import { FormsModule } from '@angular/forms';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     SearchParticipantsComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,9 @@ import { FormsModule } from '@angular/forms';
     InputComponent,
     DatePickerComponent,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
+  exports: [BackButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],

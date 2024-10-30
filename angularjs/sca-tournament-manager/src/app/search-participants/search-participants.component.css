@@ -48,7 +48,6 @@
   background-color: #ffff00;
   color: #000;
   border: none;
-  margin-bottom: 60px;
 }
 
 .example-form {
@@ -97,19 +96,3 @@
 .input-group-addon i {
   font-size: 16px;
 }
-
-.back-button {
-    cursor: pointer;
-    font-size: 24px;
-    color: #ffff00; /* Yellow color for consistency */
-    background: none;
-    border: none;
-    outline: none;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .arrow {
-    font-weight: bold;
-  }
-  

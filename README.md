@@ -16,6 +16,8 @@ Best practices:
         AngularJS:
     https://angular.dev/style-guide#style-vocabulary
 
+    Install the extension Prettier for VSCode HTML, CSS, and Javascript/Typescript formatting
+
         tldr;
         Use camelcase please
 
