@@ -12,6 +12,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputComponent } from './input/input.component';
 import { SearchParticipantsComponent } from './search-participants/search-participants.component';
+import { TournamentInfoComponent } from './tournament-info/tournament-info.component';
 
 import { FormsModule } from '@angular/forms';
 import { BackButtonComponent } from './back-button/back-button.component';
@@ -24,6 +25,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     HomeComponent,
     SearchParticipantsComponent,
     BackButtonComponent,
+    TournamentInfoComponent
   ],
   imports: [
     BrowserModule,

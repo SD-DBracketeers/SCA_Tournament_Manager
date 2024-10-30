@@ -107,8 +107,5 @@
       }
     }
   },
-  "defaultProject": "sca-tournament-manager",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "sca-tournament-manager"
 }
