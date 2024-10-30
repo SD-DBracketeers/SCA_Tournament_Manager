@@ -17,7 +17,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetParticipants retrieves all tournaments from the MongoDB collection
+// GetTournaments retrieves all tournaments from the MongoDB collection
 func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournaments []models.Tournament
@@ -39,72 +39,72 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	}
 }
 
-// CreateParticipant inserts a new participant into the MongoDB collection
+// CreateTournament inserts a new tournament into the MongoDB collection
 func CreateTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var participant models.Participant
-		json.NewDecoder(r.Body).Decode(&participant)
-		participant.CreatedAt = time.Now()
+		var tournament models.Tournament
+		json.NewDecoder(r.Body).Decode(&tournament)
+		tournament.CreatedAt = time.Now()
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
 		if err != nil {
 			http.Error(w, "Error generating id value", http.StatusInternalServerError)
 			return
 		}
-		participant.ParticipantNanoID = nanoID
+		tournament.TournamentNanoID = nanoID
 
-		collection := db.Collection("Participants")
-		result, err := collection.InsertOne(context.Background(), participant)
+		collection := db.Collection("Tournaments")
+		result, err := collection.InsertOne(context.Background(), tournament)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Fprintf(w, "Participant created with ID: %v", result.InsertedID)
+		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
 	}
 }
 
-// GetParticipant retrieves a user by their UserNanoID
+// GetTournament retrieves a tournament by their TournamentNanoID
 func GetTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Get the participantNanoID from the URL parameters
-		vars := mux.Vars(r)                                // Get URL parameters using gorilla/mux
-		participantNanoID, ok := vars["participantNanoID"] // Extract participantNanoID from the route
-		if !ok || participantNanoID == "" {
-			http.Error(w, "Missing participantNanoID", http.StatusBadRequest)
+		// Get the tournamentNanoID from the URL parameters
+		vars := mux.Vars(r)                              // Get URL parameters using gorilla/mux
+		tournamentNanoID, ok := vars["tournamentNanoID"] // Extract tournamentNanoID from the route
+		if !ok || tournamentNanoID == "" {
+			http.Error(w, "Missing tournamentNanoID", http.StatusBadRequest)
 			return
 		}
 
-		// Query the database for the user
-		var participant models.Participant
-		collection := db.Collection("Participants")
-		err := collection.FindOne(context.Background(), bson.M{"participantNanoID": participantNanoID}).Decode(&participant)
+		// Query the database for the tournament
+		var tournament models.Tournament
+		collection := db.Collection("Tournaments")
+		err := collection.FindOne(context.Background(), bson.M{"tournamentNanoID": tournamentNanoID}).Decode(&tournament)
 		if err != nil {
-			http.Error(w, "Participant not found", http.StatusNotFound)
+			http.Error(w, "Tournament not found", http.StatusNotFound)
 			return
 		}
 
-		// Return the user as JSON
+		// Return the tournament as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participant)
+		json.NewEncoder(w).Encode(tournament)
 	}
 }
 
-// UpdateParticipant updates a user's information based on their ParticipantNanoID
+// UpdateTournament updates a tournament's information based on their tournamentNanoID
 func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Get the UserNanoID from the URL parameters
+		// Get the TournamentNanoID from the URL parameters
 
-		vars := mux.Vars(r)                                // Get URL parameters using gorilla/mux
-		participantNanoID, ok := vars["participantNanoID"] // Extract userNanoID from the route
-		if !ok || participantNanoID == "" {
-			http.Error(w, "Missing participantNanoID", http.StatusBadRequest)
+		vars := mux.Vars(r)                              // Get URL parameters using gorilla/mux
+		tournamentNanoID, ok := vars["tournamentNanoID"] // Extract tournamentNanoID from the route
+		if !ok || tournamentNanoID == "" {
+			http.Error(w, "Missing tournamentNanoID", http.StatusBadRequest)
 			return
 		}
 
-		// Decode the request body into a User struct
-		var updatedParticipant models.Participant
-		if err := json.NewDecoder(r.Body).Decode(&updatedParticipant); err != nil {
+		// Decode the request body into a Tournament struct
+		var updatedTournament models.Tournament
+		if err := json.NewDecoder(r.Body).Decode(&updatedTournament); err != nil {
 			http.Error(w, "Invalid request payload", http.StatusBadRequest)
 			return
 		}
@@ -112,31 +112,29 @@ func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 		// Prepare the update fields
 		updateFields := bson.M{
 			"$set": bson.M{
-				"name":                       updatedParticipant.Name,
-				"rank":                       updatedParticipant.Rank,
-				"verificationExperationDate": updatedParticipant.VerificationExperationDate,
-				"combatType":                 updatedParticipant.CombatType,
-				"kingdom":                    updatedParticipant.Kingdom,
-				"tournamentParticipantIn":    updatedParticipant.TournamentParticipantIn,
+				"name":         updatedTournament.Name,
+				"location":     updatedTournament.Location,
+				"participants": updatedTournament.Participants,
+				"progression":  updatedTournament.Progression,
 			},
 		}
 
-		// Update the user in the database
-		collection := db.Collection("Participants")
+		// Update the tournament in the database
+		collection := db.Collection("Tournaments")
 		_, err := collection.UpdateOne(
 			context.Background(),
-			bson.M{"participantNanoID": participantNanoID},
+			bson.M{"tournamentNanoID": tournamentNanoID},
 			updateFields,
 			options.Update().SetUpsert(false), // Do not create a new document if not found
 		)
 
 		if err != nil {
-			http.Error(w, "Failed to update participant", http.StatusInternalServerError)
+			http.Error(w, "Failed to update tournament", http.StatusInternalServerError)
 			return
 		}
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Participant updated successfully"))
+		w.Write([]byte("Tournament updated successfully"))
 	}
 }
