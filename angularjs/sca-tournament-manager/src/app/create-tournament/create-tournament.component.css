@@ -1,0 +1,71 @@
+.create-tournament {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #ffff00;
+  text-align: center;
+  width: 100%;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  color: #d2d2d2;
+  margin-top: 10px;
+}
+
+input[type="text"],
+select,
+textarea,
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ffff00;
+  border-radius: 5px;
+  background-color: white;
+  color: #36454f;
+}
+
+.participant-button {
+  background-color: white;
+  color: #36454f;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.create-button {
+  background-color: #ffff00;
+  color: #36454f;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.icon {
+  margin-left: 5px;
+}
