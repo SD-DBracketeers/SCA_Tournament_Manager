@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { GetParticipantsService } from './get-participants.service';
 import { GetTournamentService } from './get-tournament.service';
+import { GetTournamentByIdService } from './get-tournament-by-id.service';
 import { ViewTournamentComponent } from './view-tournament/view-tournament.component';
 import { CreateTournamentComponent } from './create-tournament/create-tournament.component';
 
@@ -48,7 +49,8 @@ import { CreateTournamentComponent } from './create-tournament/create-tournament
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     GetParticipantsService,
-    GetTournamentService
+    GetTournamentService,
+    GetTournamentByIdService
   ],
   bootstrap: [AppComponent],
 })

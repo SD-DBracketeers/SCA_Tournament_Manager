@@ -1,6 +1,8 @@
 <div class="container my-5">
     <div class="row justify-content-center" *ngFor="let tournament of tournaments">
-      <app-tournament-info title="{{tournament.name}}" description="{{tournament.location}}" kingdomImageId="0"></app-tournament-info>
+      <app-tournament-info title="{{tournament.name}}" loc="{{tournament.location}}"
+      date="{{tournament.date}}" description="{{tournament.description}}"
+       kingdomImageId="0" (click)="viewTournament(tournament.tournamentNanoID)"></app-tournament-info>
     </div>
   </div>
   

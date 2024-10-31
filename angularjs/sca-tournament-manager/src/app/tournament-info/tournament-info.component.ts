@@ -8,9 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TournamentInfoComponent implements OnInit {
   @Input() kingdomImageId: string = '0';
-  kingdomImageUrl: string = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
+  kingdomImageUrl: string = '';
   @Input() title: string = '';
+  @Input() loc: string = '';
+  @Input() date: string = '';
   @Input() description: string = '';
+  @Input() nanoId: string = '';
   constructor() { }
 
   ngOnInit(): void {
