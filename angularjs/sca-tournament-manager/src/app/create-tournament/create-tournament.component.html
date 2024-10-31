@@ -1,0 +1,46 @@
+<h2>Create Tournament</h2>
+
+<div class="create-tournament">
+  
+    <!-- Left Section: Form Inputs -->
+    <div class="left-section">
+      <label>Name</label>
+      <input type="text" placeholder="Enter tournament name" />
+  
+      <label>Event Type</label>
+      <select>
+        <option>Heavy</option>
+        <option>Rapier</option>
+      </select>
+  
+      <label>Kingdom</label>
+      <select>
+        <option>Ansteorra</option>
+        <option>East Kingdom</option>
+      </select>
+  
+      <label>Bracket Type</label>
+      <select>
+        <option>Single Elimination</option>
+        <option>Round Robin</option>
+      </select>
+  
+      <label>Description</label>
+      <textarea placeholder="Enter tournament description"></textarea>
+    </div>
+  
+    <!-- Right Section: Calendar and Buttons -->
+    <div class="right-section">
+      <label>Date</label>
+      <input type="date" />
+  
+      <button (click)="navigateToParticipants()" class="participant-button">
+        Add List of Participants <span class="icon">+</span>
+      </button>
+  
+      <button (click)="createTournament()" class="create-button">
+        Create Tournament
+      </button>
+    </div>
+  </div>
+  
