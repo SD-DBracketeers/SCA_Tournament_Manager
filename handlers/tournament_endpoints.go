@@ -114,6 +114,10 @@ func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 		updateFields := bson.M{
 			"$set": bson.M{
 				"name":         updatedTournament.Name,
+				"description":  updatedTournament.Description,
+				"date":         updatedTournament.Date,
+				"kingdom":      updatedTournament.Kingdom,
+				"eventType":    updatedTournament.EventType,
 				"location":     updatedTournament.Location,
 				"participants": updatedTournament.Participants,
 				"progression":  updatedTournament.Progression,
