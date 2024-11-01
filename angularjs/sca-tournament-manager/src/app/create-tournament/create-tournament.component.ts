@@ -39,13 +39,14 @@ export class CreateTournamentComponent implements OnInit {
     localStorage.setItem('tournamentFormData', JSON.stringify(formData));
   }
 
-  async createTournament(name: string, eventType: string, kingdom: string, location: string, date: Date, 
+  createTournament(name: string, eventType: string, kingdom: string, location: string, date: Date, 
     description: string, participants: []) {
-    await this.getTournament.createTournaments(name, eventType, kingdom, location, date, 
+    this.getTournament.createTournaments(name, eventType, kingdom, location, date, 
       description, participants);
-    //this.router.navigate(['/bracket']);
     localStorage.removeItem("participantsList");
     localStorage.removeItem("tournamentFormData");
+    var nanoID = localStorage.getItem('nanoID');
+    this.router.navigate(['/bracket'], { state: { nanoId: nanoID } });
   }
 
   ngOnInit(): void {

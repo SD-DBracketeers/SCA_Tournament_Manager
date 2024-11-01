@@ -23,8 +23,11 @@ export class GetTournamentService {
       tournamentParticipants: participants,
       progression: [],
       date: new Date(date).toISOString()
-    }).subscribe(
-      response => console.log('Request successful:', response),
+    }, {responseType: 'text'}).subscribe(
+      response => {
+        console.log('Request successful:', response);
+        localStorage.setItem('nanoID', response);
+      },
       error => console.error('Request failed:', error)
     );
   }

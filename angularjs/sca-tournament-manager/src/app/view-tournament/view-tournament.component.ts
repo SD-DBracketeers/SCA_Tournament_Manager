@@ -39,6 +39,5 @@ export class ViewTournamentComponent implements OnInit {
       
       this.tournaments.push(newEntry);
     });
-    console.log(this.tournaments);
   }
 }
