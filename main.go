@@ -1,7 +1,7 @@
 package main
 
 import (
-	"api/handlers"
+	api "api/handlers"
 	"context"
 	"fmt"
 	"log"
@@ -11,6 +11,7 @@ import (
 
 	"github.com/joho/godotenv" // Import the godotenv package
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -79,17 +80,20 @@ func main() {
 	db := client.Database(os.Getenv("MONGODB_DATABASE"))
 
 	// Participant routes
-	router.HandleFunc("/participants", handlers.GetParticipants(db)).Methods("GET")
-	router.HandleFunc("/participants", handlers.CreateParticipant(db)).Methods("POST")
-	router.HandleFunc("/participants/{participantNanoID}", handlers.GetParticipant(db)).Methods("GET")
-	router.HandleFunc("/participants/{participantNanoID}", handlers.UpdateParticipant(db)).Methods("PUT")
+	router.HandleFunc("/participants", api.GetParticipants(db)).Methods("GET")
+	router.HandleFunc("/participants", api.CreateParticipant(db)).Methods("POST")
+	router.HandleFunc("/participants/{participantNanoID}", api.GetParticipant(db)).Methods("GET")
+	router.HandleFunc("/participants/{participantNanoID}", api.UpdateParticipant(db)).Methods("PUT")
 
 	//Tournament routes
-	router.HandleFunc("/tournaments", handlers.GetTournaments(db)).Methods("GET")
-	router.HandleFunc("/tournaments", handlers.CreateTournament(db)).Methods("POST")
-	router.HandleFunc("/tournaments/{tournamentNanoID}", handlers.GetTournament(db)).Methods("GET")
-	router.HandleFunc("/tournaments/{tournamentNanoID}", handlers.UpdateTournament(db)).Methods("PUT")
+	router.HandleFunc("/tournaments", api.GetTournaments(db)).Methods("GET")
+	router.HandleFunc("/tournaments", api.CreateTournament(db)).Methods("POST")
+	router.HandleFunc("/tournaments/{tournamentNanoID}", api.GetTournament(db)).Methods("GET")
+	router.HandleFunc("/tournaments/{tournamentNanoID}", api.UpdateTournament(db)).Methods("PUT")
 
 	// Start the server
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedOrigins([]string{"http://localhost:4200"}),
+		handlers.AllowedMethods([]string{"GET", "POST", "PUT"}),
+		handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}),
+	)(router)))
 }

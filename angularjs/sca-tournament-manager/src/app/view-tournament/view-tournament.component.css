@@ -1,0 +1,77 @@
+.tournament-view {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.tournament-info {
+  width: 100%;
+}
+::ng-deep .view-tournament-title {
+  font-size: 2em;
+}
+
+.vertical-divider {
+  width: 2px;
+  height: 80vh; /* Adjust the height as needed */
+  background-color: #ffffff;
+  margin: 0 20px
+}
+
+
+.tournament-bracket {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.participant {
+  background-color: #ffffff; /* White background */
+  color: #36454f; /* Text color */
+  padding: 5px 10px;
+  margin: 5px 0;
+  border: 1px solid #36454f; /* Optional: add border to make it more defined */
+}
+
+.connector.vertical {
+  width: 2px;
+  height: 20px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.connector.horizontal {
+  width: 40px;
+  height: 2px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+}
+
+.update-bracket-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffff00;
+  color: #36454f; /* Button text color */
+  border: none;
+  cursor: pointer;
+  border-radius: 10px; /* Rounds the edges */
+}

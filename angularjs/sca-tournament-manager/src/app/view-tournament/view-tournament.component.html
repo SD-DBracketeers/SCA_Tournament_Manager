@@ -1,0 +1,49 @@
+<div class="tournament-view">
+  <!-- Left Section: Tournament Info -->
+  <div class="tournament-info">
+    <div class="row justify-content-center" *ngFor="let tournament of tournaments">
+      <app-tournament-info title="{{tournament.name}}" loc="{{tournament.location}}"
+      date="{{tournament.date}}" description="{{tournament.description}}" nanoId="{{tournament.tournamentNanoID}}"
+       kingdomImageId="0"></app-tournament-info>
+    </div>
+  </div>
+
+  <!-- Vertical Divider -->
+  <div class="vertical-divider"></div>
+  
+  <!-- Right Section: Bracket -->
+  <div class="tournament-bracket">
+    <!-- First Round -->
+    <div class="round">
+      <div class="match">
+        <span class="participant">Guy Smith</span>
+        <span class="connector vertical"></span>
+        <span class="participant">Girl Stone</span>
+      </div>
+      <!-- <span class="connector horizontal"></span> -->
+      <div class="match">
+        <span class="participant">Person Miller</span>
+        <span class="connector vertical"></span>
+        <span class="participant">Guy Smith II</span>
+      </div>
+    </div>
+
+    <!-- Second Round -->
+    <div class="round">
+      <div class="match">
+        <span class="participant">/</span>
+        <span class="connector vertical"></span>
+        <span class="participant">/</span>
+      </div>
+    </div>
+
+    <!-- Third (Final) Round -->
+    <div class="round">
+      <div class="match">
+        <span class="participant">/</span>
+      </div>
+    </div>
+
+    <button class="update-bracket-btn">Update Bracket</button>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+/* Override the default navbar-default background color */
+.navbar-default {
+  background-color: #36454F; /* Your desired color */
+  border-color: #36454F;     /* Set border color to match */
+}
+
+/* Change the link colors in the navbar */
+.navbar-default .navbar-nav > li > a {
+  color: #FFFFFF; /* Change text color to white */
+}
+
+/* Navbar brand styling */
+.navbar-default .navbar-brand {
+  color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FFFFFF; /* Example: Change color to gold on hover */
+  }
+
+  .navbar-default .navbar-brand:hover {
+    color: #FFFFFF; /* Example: Gold on hover */
+  }
+
+/* Override the active link background */
+.navbar-default .navbar-nav > .active > a {
+  background-color: transparent;  /* Make it transparent */
+  color: #FFFFFF;  /* Ensure the text remains white */
+}
+
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:active {
+  background-color: transparent;  /* Keep it transparent */
+  color: #FFFFFF;  /* Maintain white text */
+  outline: none;  /* Remove the blue focus outline */
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FFFFFF;
+}

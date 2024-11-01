@@ -16,6 +16,8 @@ Best practices:
         AngularJS:
     https://angular.dev/style-guide#style-vocabulary
 
+    Install the extension Prettier for VSCode HTML, CSS, and Javascript/Typescript formatting
+
         tldr;
         Use camelcase please
 
@@ -26,6 +28,12 @@ Best practices:
     Languages and database:
         Languages:  Angular JS, golang
         Database: mongoDB
+
+
+Third-party resources:
+    https://material.angular.io/components/input/overview
+    https://material.angular.io/components/datepicker/overview
+    https://material.angular.io/components/form-field/overview
 
 How to initalize and run backend using Go
 
@@ -41,3 +49,4 @@ How to initalize and run backend using Go
 
     
     Alternatively you can run the unit tests for the handlers by navigating to the handlers folder and running "go test"
+
