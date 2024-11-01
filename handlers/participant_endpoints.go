@@ -60,7 +60,7 @@ func CreateParticipant(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
-		fmt.Fprintf(w, "Participant created with ID: %s", nanoID)
+		fmt.Fprintf(w, "%s", nanoID)
 	}
 }
 

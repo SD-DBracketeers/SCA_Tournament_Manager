@@ -61,7 +61,7 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
-		fmt.Fprintf(w, "Tournament created with ID: %s", tournament.TournamentNanoID)
+		fmt.Fprintf(w, "%s", tournament.TournamentNanoID)
 	}
 }
 
