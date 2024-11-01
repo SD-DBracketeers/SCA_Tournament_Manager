@@ -54,13 +54,13 @@ func CreateParticipant(db *mongo.Database) http.HandlerFunc {
 		participant.ParticipantNanoID = nanoID
 
 		collection := db.Collection("Participants")
-		result, err := collection.InsertOne(context.Background(), participant)
+		_, err = collection.InsertOne(context.Background(), participant)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Fprintf(w, "Participant created with ID: %v", result.InsertedID)
+		fmt.Fprintf(w, "Participant created with ID: %s", nanoID)
 	}
 }
 

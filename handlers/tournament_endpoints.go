@@ -55,13 +55,13 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 		tournament.TournamentNanoID = nanoID
 
 		collection := db.Collection("Tournaments")
-		result, err := collection.InsertOne(context.Background(), tournament)
+		_, err = collection.InsertOne(context.Background(), tournament)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
+		fmt.Fprintf(w, "Tournament created with ID: %s", tournament.TournamentNanoID)
 	}
 }
 
