@@ -19,10 +19,10 @@ export class GetTournamentService {
       eventType: eventType,
       kingdom: kingdom,
       location: location,
-      date: date,
       description: description,
       tournamentParticipants: participants,
-      progression: []
+      progression: [],
+      date: new Date(date).toISOString()
     }).subscribe(
       response => console.log('Request successful:', response),
       error => console.error('Request failed:', error)
