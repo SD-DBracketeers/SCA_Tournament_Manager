@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
         this.tournaments.push(key[1]);
       });
     });
-    console.log(this.tournaments);
   }
 
   kingdomImageUrl: string = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';

@@ -41,15 +41,16 @@ export class CreateTournamentComponent implements OnInit {
 
   async createTournament(name: string, eventType: string, kingdom: string, location: string, date: Date, 
     description: string, participants: []) {
-    
     await this.getTournament.createTournaments(name, eventType, kingdom, location, date, 
       description, participants);
     //this.router.navigate(['/bracket']);
-    localStorage.removeItem('tournamentFormData');
+    localStorage.removeItem("participantsList");
+    localStorage.removeItem("tournamentFormData");
   }
 
   ngOnInit(): void {
     const savedData = localStorage.getItem('tournamentFormData');
+    const savedParticipants = localStorage.getItem('participantsList');
     if (savedData) {
       const parsedData = JSON.parse(savedData);
       this.name = parsedData.name;
@@ -58,6 +59,10 @@ export class CreateTournamentComponent implements OnInit {
       this.location = parsedData.location;
       this.description = parsedData.description;
       this.date = parsedData.date;
+    }
+    if (savedParticipants) {
+      const parsedData = JSON.parse(savedParticipants);
+      this.participants = parsedData;
     }
   }
 }
