@@ -11,4 +11,21 @@ export class GetTournamentService {
   getTournaments() {
     return this.http.get('http://localhost:8080/tournaments');
   }
+
+  createTournaments(name: string, eventType: string, kingdom: string, location: string, date: Date, 
+    description: string, participants: []) {
+    return this.http.post('http://localhost:8080/tournaments', {
+      name: name,
+      eventType: eventType,
+      kingdom: kingdom,
+      location: location,
+      date: date,
+      description: description,
+      tournamentParticipants: participants,
+      progression: []
+    }).subscribe(
+      response => console.log('Request successful:', response),
+      error => console.error('Request failed:', error)
+    );
+  }
 }

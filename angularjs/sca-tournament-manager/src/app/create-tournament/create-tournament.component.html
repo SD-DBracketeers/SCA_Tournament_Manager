@@ -1,46 +1,43 @@
 <h2>Create Tournament</h2>
 
-<div class="create-tournament">
+<form #tournamentForm="ngForm" class="create-tournament" (ngSubmit)="submitForm()" >
   
     <!-- Left Section: Form Inputs -->
     <div class="left-section">
-      <label>Name</label>
-      <input type="text" placeholder="Enter tournament name" />
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="Enter tournament name" />
   
-      <label>Event Type</label>
-      <select>
+      <label for="eventType">Event Type</label>
+      <select id="eventType" name="eventType" [(ngModel)]="eventType">
         <option>Heavy</option>
         <option>Rapier</option>
       </select>
   
-      <label>Kingdom</label>
-      <select>
+      <label for="kingdom">Kingdom</label>
+      <select id="kingdom" name="kingdom" [(ngModel)]="kingdom">
         <option>Ansteorra</option>
         <option>East Kingdom</option>
       </select>
   
-      <label>Bracket Type</label>
-      <select>
-        <option>Single Elimination</option>
-        <option>Round Robin</option>
-      </select>
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" [(ngModel)]="location" placeholder="Enter tournament location" />
   
-      <label>Description</label>
-      <textarea placeholder="Enter tournament description"></textarea>
+      <label for="description">Description</label>
+      <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter tournament description"></textarea>
     </div>
   
     <!-- Right Section: Calendar and Buttons -->
     <div class="right-section">
-      <label>Date</label>
-      <input type="date" />
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" [(ngModel)]="date"/>
   
       <button (click)="navigateToParticipants()" class="participant-button">
         Add List of Participants <span class="icon">+</span>
       </button>
   
-      <button (click)="createTournament()" class="create-button">
+      <button type="submit" class="create-button">
         Create Tournament
       </button>
     </div>
-  </div>
+  </form>
   
