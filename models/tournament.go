@@ -16,6 +16,6 @@ type Tournament struct {
 	Date             time.Time          `bson:"date" json:"date"`
 	Description      string             `bson:"description" json:"description"`
 	CreatedAt        time.Time          `bson:"createdAt" json:"createdAt"`
-	Participants     []string           `bson:"participants" json:"participants"`
+	Participants     []string           `bson:"tournamentParticipants" json:"tournamentParticipants"`
 	Progression      []bool             `bson:"progression" json:"progression"`
 }
