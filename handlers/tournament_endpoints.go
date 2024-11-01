@@ -55,13 +55,13 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 		tournament.TournamentNanoID = nanoID
 
 		collection := db.Collection("Tournaments")
-		result, err := collection.InsertOne(context.Background(), tournament)
+		_, err = collection.InsertOne(context.Background(), tournament)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		fmt.Fprintf(w, "Tournament created with ID: %v", result.InsertedID)
+		fmt.Fprintf(w, "Tournament created with ID: %s", tournament.TournamentNanoID)
 	}
 }
 
@@ -114,6 +114,10 @@ func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 		updateFields := bson.M{
 			"$set": bson.M{
 				"name":         updatedTournament.Name,
+				"description":  updatedTournament.Description,
+				"date":         updatedTournament.Date,
+				"kingdom":      updatedTournament.Kingdom,
+				"eventType":    updatedTournament.EventType,
 				"location":     updatedTournament.Location,
 				"participants": updatedTournament.Participants,
 				"progression":  updatedTournament.Progression,

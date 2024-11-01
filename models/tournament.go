@@ -13,8 +13,8 @@ type Tournament struct {
 	EventType        string             `bson:"eventType" json:"eventType"`
 	Kingdom          string             `bson:"kingdom" json:"kingdom"`
 	Location         string             `bson:"location" json:"location"`
-	Description      string             `bson:"description" json:"description"`
 	Date             time.Time          `bson:"date" json:"date"`
+	Description      string             `bson:"description" json:"description"`
 	CreatedAt        time.Time          `bson:"createdAt" json:"createdAt"`
 	Participants     []string           `bson:"tournamentParticipants" json:"tournamentParticipants"`
 	Progression      []bool             `bson:"progression" json:"progression"`
