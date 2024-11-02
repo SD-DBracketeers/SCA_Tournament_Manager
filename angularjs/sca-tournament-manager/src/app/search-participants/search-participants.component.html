@@ -1,8 +1,13 @@
 <div class="container my-5">
-  <app-back-button>
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    <!-- Unicode for a left arrow -->
-  </app-back-button>
+  <div class="back-button-container">
+    <app-back-button></app-back-button>
+  </div>
+
+  <div class="add-button-container">
+    <button class="btn btn-warning mt-3" routerLink="/new-participant">
+      Add new participant
+    </button>
+  </div>
 
   <!-- Search Bar -->
   <div class="search-wrapper">
@@ -17,6 +22,8 @@
       <i class="glyphicon glyphicon-search"></i>
     </button>
   </div>
+
+  
 
   <!-- Participant List -->
   <table class="table table-bordered table-hover text-center">
@@ -42,12 +49,16 @@
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
           <button class="btn btn-outline-light btn-sm">
-            <i class="glyphicon" [ngClass]="participant.isFound? 'glyphicon-minus' : 'glyphicon-plus'"
-            (click)="toggleParticipants(participant.participantNanoID)"></i>
+            <i
+              class="glyphicon"
+              [ngClass]="
+                participant.isFound ? 'glyphicon-minus' : 'glyphicon-plus'
+              "
+              (click)="toggleParticipants(participant.participantNanoID)"
+            ></i>
           </button>
         </td>
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-warning mt-3">Add new</button>
 </div>
