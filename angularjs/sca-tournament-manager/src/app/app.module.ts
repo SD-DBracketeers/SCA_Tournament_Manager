@@ -23,6 +23,8 @@ import { GetTournamentByIdService } from './get-tournament-by-id.service';
 import { ViewTournamentComponent } from './view-tournament/view-tournament.component';
 import { CreateTournamentComponent } from './create-tournament/create-tournament.component';
 import { NewParticipantComponent } from './new-participant/new-participant.component';
+import { UpdateParticipantComponent } from './update-participant/update-participant.component';
+import { ParticipantInformationComponent } from './participant-information/participant-information.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NewParticipantComponent } from './new-participant/new-participant.compo
     TournamentInfoComponent,
     ViewTournamentComponent,
     CreateTournamentComponent,
-    NewParticipantComponent
+    NewParticipantComponent,
+    UpdateParticipantComponent,
+    ParticipantInformationComponent
   ],
   imports: [
     BrowserModule,

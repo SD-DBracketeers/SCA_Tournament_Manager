@@ -1,0 +1,89 @@
+/* Back Button */
+.back-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns the buttons to the left */
+}
+
+.back-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+/* Headers */
+h3 {
+  text-align: center;
+}
+
+.kingdom-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 200px;
+}
+
+/* Container Styling */
+.information-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.base-stats {
+  text-align: center;
+}
+
+/* Flexbox Container for Left and Right Sections */
+.form-sections {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 900px;
+  gap: 40px; /* Space between sections */
+}
+
+/* Left and Right Sections */
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  width: 48%; /* Ensure both sections take up half the space */
+  max-width: 400px;
+}
+
+/* Table formatting */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #ffff00; /* Outer border color */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden;
+}
+
+.table th {
+  color: #ffff00;
+  border-bottom: 2px solid #ffff00;
+}
+
+.table td {
+  color: #ffffff;
+  background-color: #36454f;
+  border: none; /* Remove vertical borders */
+}
+
+.table thead tr {
+  background-color: #36454f;
+}
+
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px; /* Bottom-left rounded corner */
+}
+
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px; /* Bottom-right rounded corner */
+}

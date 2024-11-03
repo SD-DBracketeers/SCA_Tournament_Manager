@@ -1,0 +1,90 @@
+h2 {
+    color: #ffff00;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .back-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns the buttons to the left */
+  }
+  
+  /* Container Styling */
+  .add-participant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ffff00;
+    border-radius: 5px;
+    background-color: white;
+    color: #36454f;
+    margin-bottom: 20px;
+  }
+  
+  .back-button-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin-bottom: 20px;
+  }
+  
+  /* Flexbox Container for Left and Right Sections */
+  .form-sections {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 900px;
+    gap: 40px; /* Space between sections */
+  }
+  
+  /* Left and Right Sections */
+  .left-section,
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Ensure both sections take up half the space */
+    max-width: 400px;
+  }
+  
+  /* Centered Button */
+  .centered-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .create-button {
+    width: 200px;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #36454f;
+    background-color: #ffff00;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+  
+  .create-button:hover {
+    background-color: #e5e500;
+  }
+  
+  /* Label Styling */
+  label {
+    font-size: 16px;
+    color: #d2d2d2;
+    margin-bottom: 5px;
+  }
+  

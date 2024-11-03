@@ -1,0 +1,58 @@
+<h2>Update Participant</h2>
+
+<form
+  #participantForm="ngForm"
+  class="add-participant"
+  (ngSubmit)="submitForm()"
+>
+  <div class="back-button-container">
+    <app-back-button></app-back-button>
+  </div>
+
+  <!-- Flexbox Container for Form Sections -->
+  <div class="form-sections">
+    <!-- Left Section: Participant Information -->
+    <div class="left-section">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="name"
+        placeholder="Enter participant name"
+      />
+
+      <label for="kingdom">Kingdom</label>
+      <select id="kingdom" name="kingdom" [(ngModel)]="kingdom">
+        <option>Ansteorra</option>
+        <option>East Kingdom</option>
+      </select>
+
+      <label for="combatType">Combat Type</label>
+      <select id="combatType" name="combatType" [(ngModel)]="combatType">
+        <option>Heavy</option>
+        <option>Rapier</option>
+      </select>
+    </div>
+
+    <!-- Right Section: Date Picker -->
+    <div class="right-section">
+      <label for="rank">Rank</label>
+      <select id="rank" name="rank" [(ngModel)]="rank">
+        <option>Knight</option>
+        <option>MoD</option>
+        <option>AoA</option>
+      </select>
+
+      <label for="verificationDate">Verification Expiration Date</label>
+      <input
+        type="date"
+        id="verificationDate"
+        name="verificationDate"
+        [(ngModel)]="verificationDate"
+      />
+
+      <button type="submit" class="create-button">Update Participant</button>
+    </div>
+  </div>
+</form>
