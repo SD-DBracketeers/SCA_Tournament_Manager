@@ -25,6 +25,7 @@ import { CreateTournamentComponent } from './create-tournament/create-tournament
 import { NewParticipantComponent } from './new-participant/new-participant.component';
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { ParticipantInformationComponent } from './participant-information/participant-information.component';
+import { ListboxComponent } from './listbox/listbox.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ParticipantInformationComponent } from './participant-information/parti
     CreateTournamentComponent,
     NewParticipantComponent,
     UpdateParticipantComponent,
-    ParticipantInformationComponent
+    ParticipantInformationComponent,
+    ListboxComponent
   ],
   imports: [
     BrowserModule,

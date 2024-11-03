@@ -1,0 +1,15 @@
+.scroll-container {
+    width: 300px;
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #ffff00;
+    border-radius: 5px;
+    background-color: #ccc; /* color of entire element */
+  }
+  
+  .scroll-item {
+    padding: 10px;
+    background-color: white; /* color of each item's bg */
+    margin-bottom: 3px;
+    color: #36454f; /* color of text */
+  }
