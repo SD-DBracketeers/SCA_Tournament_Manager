@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-participant-information',
-  templateUrl: './participant-information.component.html',
-  styleUrls: ['./participant-information.component.css'],
+  selector: 'app-view-participant',
+  templateUrl: './view-participant.component.html',
+  styleUrls: ['./view-participant.component.css'],
 })
-export class ParticipantInformationComponent {
+export class ViewParticipantComponent {
   name: string = 'Guy Smith';
   rank: string = 'AoA';
   combatType: string = 'Heavy';

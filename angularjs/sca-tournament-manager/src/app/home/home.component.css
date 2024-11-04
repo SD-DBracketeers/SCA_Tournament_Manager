@@ -1,3 +1,9 @@
+h2 {
+  color: #ffff00;
+  text-align: center;
+  width: 100%;
+}
+
 /* Add any necessary spacing between elements */
 .card {
     margin-top: 20px;

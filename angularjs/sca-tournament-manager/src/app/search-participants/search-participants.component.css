@@ -30,12 +30,17 @@
 
 .table td {
   color: #ffffff;
-  background-color: #36454f;
   border: none; /* Remove vertical borders */
+}
+.table tbody tr:nth-child(even) {
+  background-color: #36454f; /* Dark color */
+}
+.table tbody tr:nth-child(odd) {
+  background-color: #4d4f36; /* Lighter color */
 }
 
 .table thead tr {
-  background-color: #36454f;
+  background-color: #2e3a43;
 }
 
 .table tbody tr:last-child td:first-child {

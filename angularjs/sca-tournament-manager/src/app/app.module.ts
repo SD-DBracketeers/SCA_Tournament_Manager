@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { ToTopComponent } from './to-top/to-top.component';
 import { HomeComponent } from './home/home.component';
 
 import { DatePickerComponent } from './date-picker/date-picker.component';
@@ -24,14 +24,14 @@ import { ViewTournamentComponent } from './view-tournament/view-tournament.compo
 import { CreateTournamentComponent } from './create-tournament/create-tournament.component';
 import { NewParticipantComponent } from './new-participant/new-participant.component';
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
-import { ParticipantInformationComponent } from './participant-information/participant-information.component';
+import { ViewParticipantComponent } from './view-participant/view-participant.component';
 import { ListboxComponent } from './listbox/listbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
+    ToTopComponent,
     HomeComponent,
     SearchParticipantsComponent,
     BackButtonComponent,
@@ -40,7 +40,7 @@ import { ListboxComponent } from './listbox/listbox.component';
     CreateTournamentComponent,
     NewParticipantComponent,
     UpdateParticipantComponent,
-    ParticipantInformationComponent,
+    ViewParticipantComponent,
     ListboxComponent
   ],
   imports: [
