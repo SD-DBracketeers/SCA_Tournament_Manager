@@ -118,3 +118,14 @@
 .item-child:only-child:after {
   display: none;
 }
+
+/* Dragging style */
+
+.item p[draggable="true"] {
+  cursor: grab;
+}
+
+.item p[draggable="true"]:active {
+  cursor: grabbing;
+  opacity: 0.6;
+}
