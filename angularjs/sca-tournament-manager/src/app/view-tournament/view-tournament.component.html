@@ -22,106 +22,98 @@
   <!-- Right Section: Bracket -->
   <!-- https://blog.codepen.io/2018/02/16/need-make-tournament-bracket/ -->
   <div class="right_section">
-    <div class="wrapper">
-      <div class="item">
-        <div class="item-parent">
-          <p
-            draggable="true"
-            (dragstart)="onDragStart($event, 'Winner')"
-            (drop)="onDrop($event)"
-            (dragover)="onDragOver($event)"
-          >
-            Winner
-          </p>
-        </div>
-        <div class="item-childrens">
-          <div class="item-child">
-            <div class="item">
-              <div class="item-childrens">
-                <div class="item-child">
-                  <div class="item">
-                    <div class="item-parent">
-                      <p
-                        draggable="true"
-                        (dragstart)="onDragStart($event, 'Parent 1')"
-                        (drop)="onDrop($event)"
-                        (dragover)="onDragOver($event)"
-                      >
-                        Parent 1
-                      </p>
-                    </div>
-                    <div class="item-childrens">
-                      <div class="item-child">
-                        <p
-                          draggable="true"
-                          (dragstart)="onDragStart($event, 'child 1')"
-                          (drop)="onDrop($event)"
-                          (dragover)="onDragOver($event)"
-                        >
-                          child 1
-                        </p>
-                      </div>
-                      <div class="item-child">
-                        <p
-                          draggable="true"
-                          (dragstart)="onDragStart($event, 'child 2')"
-                          (drop)="onDrop($event)"
-                          (dragover)="onDragOver($event)"
-                        >
-                          child 2
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <section id="bracket">
+      <div class="container">
+        <div class="split split-one">
+          <div class="round round-one current">
+            <div class="round-details">
+              Round 1
             </div>
+            <ul class="matchup">
+              <li class="team team-top">Duke<span class="score"></span></li>
+              <li class="team team-bottom">
+                Virginia<span class="score"></span>
+              </li>
+            </ul>
+            <ul class="matchup">
+              <li class="team team-top">
+                Wake Forest<span class="score"></span>
+              </li>
+              <li class="team team-bottom">
+                Clemson<span class="score"></span>
+              </li>
+            </ul>
+            <ul class="matchup">
+              <li class="team team-top">
+                North Carolina<span class="score"></span>
+              </li>
+              <li class="team team-bottom">
+                Florida State<span class="score"></span>
+              </li>
+            </ul>
+            <ul class="matchup">
+              <li class="team team-top">NC State<span class="score"></span></li>
+              <li class="team team-bottom">
+                Maryland<span class="score"></span>
+              </li>
+            </ul>
           </div>
-          <div class="item-child">
-            <div class="item">
-              <div class="item-childrens">
-                <div class="item-child">
-                  <div class="item">
-                    <div class="item-parent">
-                      <p
-                        draggable="true"
-                        (dragstart)="onDragStart($event, 'Parent 2')"
-                        (drop)="onDrop($event)"
-                        (dragover)="onDragOver($event)"
-                      >
-                        Parent 2
-                      </p>
-                    </div>
-                    <div class="item-childrens">
-                      <div class="item-child">
-                        <p
-                          draggable="true"
-                          (dragstart)="onDragStart($event, 'child 3')"
-                          (drop)="onDrop($event)"
-                          (dragover)="onDragOver($event)"
-                        >
-                          child 3
-                        </p>
-                      </div>
-                      <div class="item-child">
-                        <p
-                          draggable="true"
-                          (dragstart)="onDragStart($event, 'child 4')"
-                          (drop)="onDrop($event)"
-                          (dragover)="onDragOver($event)"
-                        >
-                          child 4
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <!-- END ROUND ONE -->
+
+          <div class="round round-two">
+            <div class="round-details">
+              Round 2
             </div>
+            <ul class="matchup">
+              <li class="team team-top">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+              <li class="team team-bottom">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+            </ul>
+            <ul class="matchup">
+              <li class="team team-top">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+              <li class="team team-bottom">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+            </ul>
+          </div>
+          <!-- END ROUND TWO -->
+
+          <div class="round round-three">
+            <div class="round-details">
+              Round 3
+            </div>
+            <ul class="matchup">
+              <li class="team team-top">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+              <li class="team team-bottom">
+                &nbsp;<span class="score">&nbsp;</span>
+              </li>
+            </ul>
+          </div>
+          <!-- END ROUND THREE -->
+        </div>
+
+        <div class="champion">
+          <div class="final">
+            <i class="fa fa-trophy"></i>
+            <div class="round-details">
+              champion
+            </div>
+            <ul class="matchup championship">
+              <li class="team team-top">
+                &nbsp;<span class="vote-count">&nbsp;</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <button class="update-bracket-btn">Update Bracket</button>
   </div>
 </div>
