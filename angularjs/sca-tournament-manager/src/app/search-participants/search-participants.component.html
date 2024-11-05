@@ -39,7 +39,7 @@
     </thead>
     <tbody>
       <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
-      <tr *ngFor="let participant of participants" routerLink="/view-participant">
+      <tr *ngFor="let participant of participants">
         <td>{{ participant.name }}</td>
         <td>{{ participant.rank }}</td>
         <td>{{ participant.combatType }}</td>
@@ -49,7 +49,7 @@
           <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
-          <button class="btn btn-outline-light btn-sm">
+          <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
             <i
               class="glyphicon"
               [ngClass]="

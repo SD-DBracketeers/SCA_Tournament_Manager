@@ -16,6 +16,7 @@ export class CreateTournamentComponent implements OnInit {
   description: string = '';
   date: Date = new Date;
   participants: [] = [];
+  participantNames: [] = [];
 
   navigateToParticipants() {
     this.saveFormData();
@@ -37,6 +38,7 @@ export class CreateTournamentComponent implements OnInit {
       participants: this.participants
     };
     localStorage.setItem('tournamentFormData', JSON.stringify(formData));
+    localStorage.setItem('prevUrl', 'create-tournament');
   }
 
   createTournament(name: string, eventType: string, kingdom: string, location: string, date: Date, 
@@ -44,6 +46,7 @@ export class CreateTournamentComponent implements OnInit {
     this.getTournament.createTournaments(name, eventType, kingdom, location, date, 
       description, participants);
     localStorage.removeItem("participantsList");
+    localStorage.removeItem("participantNames");
     localStorage.removeItem("tournamentFormData");
     var nanoID = localStorage.getItem('nanoID');
     this.router.navigate(['/bracket'], { state: { nanoId: nanoID } });
@@ -52,6 +55,7 @@ export class CreateTournamentComponent implements OnInit {
   ngOnInit(): void {
     const savedData = localStorage.getItem('tournamentFormData');
     const savedParticipants = localStorage.getItem('participantsList');
+    const savedParticipantNames = localStorage.getItem('participantNames');
     if (savedData) {
       const parsedData = JSON.parse(savedData);
       this.name = parsedData.name;
@@ -65,5 +69,10 @@ export class CreateTournamentComponent implements OnInit {
       const parsedData = JSON.parse(savedParticipants);
       this.participants = parsedData;
     }
+    if (savedParticipantNames) {
+      const parsedData = JSON.parse(savedParticipantNames);
+      this.participantNames = parsedData;
+    }
+    localStorage.removeItem("prevUrl");
   }
 }
