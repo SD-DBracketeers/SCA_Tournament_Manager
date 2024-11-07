@@ -11,4 +11,7 @@ export class GetParticipantsService {
   getParticipants() {
     return this.http.get('http://localhost:8080/participants');
   }
+  getParticipantByID(nanoID: string) {
+    return this.http.get('http://localhost:8080/participants/' + nanoID);
+  }
 }

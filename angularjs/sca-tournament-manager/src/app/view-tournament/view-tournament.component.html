@@ -21,83 +21,23 @@
 
   <!-- Right Section: Bracket -->
   <!-- https://blog.codepen.io/2018/02/16/need-make-tournament-bracket/ -->
-  <div class="right_section">
+  <div class="right_section" *ngFor="let tournament of tournaments">
     <section id="bracket">
       <div class="container">
         <div class="split split-one">
-          <div class="round round-one current">
+          <div class="round" *ngFor="let _ of [].constructor(getRounds(tournament)); let i = index">
             <div class="round-details">
-              Round 1
+              ROUND {{i + 1}}
             </div>
-            <ul class="matchup">
+            <ul class="matchup" *ngFor="let _ of [].constructor(getNumParticipants(getRounds(tournament),i+1)); let j = index">
               <li class="team team-top">Duke<span class="score"></span></li>
               <li class="team team-bottom">
                 Virginia<span class="score"></span>
               </li>
             </ul>
-            <ul class="matchup">
-              <li class="team team-top">
-                Wake Forest<span class="score"></span>
-              </li>
-              <li class="team team-bottom">
-                Clemson<span class="score"></span>
-              </li>
-            </ul>
-            <ul class="matchup">
-              <li class="team team-top">
-                North Carolina<span class="score"></span>
-              </li>
-              <li class="team team-bottom">
-                Florida State<span class="score"></span>
-              </li>
-            </ul>
-            <ul class="matchup">
-              <li class="team team-top">NC State<span class="score"></span></li>
-              <li class="team team-bottom">
-                Maryland<span class="score"></span>
-              </li>
-            </ul>
           </div>
-          <!-- END ROUND ONE -->
-
-          <div class="round round-two">
-            <div class="round-details">
-              Round 2
-            </div>
-            <ul class="matchup">
-              <li class="team team-top">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-              <li class="team team-bottom">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-            </ul>
-            <ul class="matchup">
-              <li class="team team-top">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-              <li class="team team-bottom">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-            </ul>
-          </div>
-          <!-- END ROUND TWO -->
-
-          <div class="round round-three">
-            <div class="round-details">
-              Round 3
-            </div>
-            <ul class="matchup">
-              <li class="team team-top">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-              <li class="team team-bottom">
-                &nbsp;<span class="score">&nbsp;</span>
-              </li>
-            </ul>
-          </div>
-          <!-- END ROUND THREE -->
-        </div>
+          
+        </div> 
 
         <div class="champion">
           <div class="final">
