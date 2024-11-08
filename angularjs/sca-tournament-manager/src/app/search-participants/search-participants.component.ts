@@ -22,6 +22,7 @@ export class SearchParticipantsComponent implements OnInit {
   participantNames: string[] = [];
   previousUrl: string = '';
 
+  // add or remove participants from the tournament that is being created
   toggleParticipants (nanoID: string) {
     const savedData = localStorage.getItem('participantsList');
     const participant = this.participants.find(p => p.participantNanoID === nanoID);
@@ -29,6 +30,7 @@ export class SearchParticipantsComponent implements OnInit {
     if (savedData && participant) {
       const parsedData = JSON.parse(savedData);
       this.participantsList = parsedData;
+      // remove participant from tournament
       if (this.participantsList.includes(nanoID)) {
         let newList = this.participantsList.filter(item => item !== nanoID);
         let newNames = this.participantNames.filter(item => item !== participant.name);
@@ -40,24 +42,25 @@ export class SearchParticipantsComponent implements OnInit {
           participant.isFound = false;
           return;
         }
-      } else {
+      } else { // add participant to tournament
         this.participantsList.push(nanoID);
         this.participantNames.push(participant.name);
         localStorage.setItem('participantsList', JSON.stringify(this.participantsList));
         localStorage.setItem('participantNames', JSON.stringify(this.participantNames));
       }
-    } else if (participant) {
+    } else if (participant) { // add participant to tournament
       this.participantsList.push(nanoID);
       this.participantNames.push(participant.name);
       localStorage.setItem('participantsList', JSON.stringify(this.participantsList));
       localStorage.setItem('participantNames', JSON.stringify(this.participantNames));
     }
-    if (participant) {
+    if (participant) { // change the displayed button
       participant.isFound = true;
       return;
     }
   }
 
+  // get the saved list of participants for the tournament
   getParticipantsList () {
     const savedData = localStorage.getItem('participantsList');
     if (savedData) {
@@ -71,6 +74,7 @@ export class SearchParticipantsComponent implements OnInit {
     }
   }
 
+  // find out which page the page was accessed from
   getPreviousUrl () {
     const savedData = localStorage.getItem('prevUrl');
     if (savedData) {
@@ -82,6 +86,7 @@ export class SearchParticipantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get the whole list of participants
     this.getParticipants.getParticipants().subscribe((data) =>{
       var entries = Object.entries(data);
       entries.forEach(key => {

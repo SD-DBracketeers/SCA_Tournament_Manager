@@ -9,6 +9,7 @@ import { GetTournamentService } from '../get-tournament.service';
 })
 export class CreateTournamentComponent implements OnInit {
   constructor(private router: Router, public getTournament: GetTournamentService) {}
+  // variables in the form
   name: string = '';
   eventType: string = '';
   kingdom: string = '';
@@ -18,15 +19,19 @@ export class CreateTournamentComponent implements OnInit {
   participants: [] = [];
   participantNames: [] = [];
 
+  // navigate to select participants
   navigateToParticipants() {
     this.saveFormData();
     this.router.navigate(['/search-participants']);
   }
+
+  // submit the form
   submitForm() {
     this.saveFormData();
     this.createTournament(this.name, this.eventType, this.kingdom, this.location, this.date, this.description, this.participants);
   }
 
+  // save the form fields in localStorage so they can be accessed when users return to the page
   saveFormData() {
     const formData = {
       name: this.name,
@@ -41,6 +46,7 @@ export class CreateTournamentComponent implements OnInit {
     localStorage.setItem('prevUrl', 'create-tournament');
   }
 
+  // create the tournament, remove stuff from the localStorage, and redirect to bracket page
   createTournament(name: string, eventType: string, kingdom: string, location: string, date: Date, 
     description: string, participants: []) {
     this.getTournament.createTournaments(name, eventType, kingdom, location, date, 
@@ -48,11 +54,13 @@ export class CreateTournamentComponent implements OnInit {
     localStorage.removeItem("participantsList");
     localStorage.removeItem("participantNames");
     localStorage.removeItem("tournamentFormData");
+    localStorage.removeItem("prevUrl");
     var nanoID = localStorage.getItem('nanoID');
     this.router.navigate(['/bracket'], { state: { nanoId: nanoID } });
   }
 
   ngOnInit(): void {
+    // restore saved form fields
     const savedData = localStorage.getItem('tournamentFormData');
     const savedParticipants = localStorage.getItem('participantsList');
     const savedParticipantNames = localStorage.getItem('participantNames');

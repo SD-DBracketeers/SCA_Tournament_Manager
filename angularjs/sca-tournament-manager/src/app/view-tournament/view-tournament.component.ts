@@ -13,6 +13,7 @@ import { GetTournamentService } from '../get-tournament.service';
 export class ViewTournamentComponent implements OnInit {
   constructor(private router: Router, public getTournament: GetTournamentByIdService, 
     public getParticipantById: GetParticipantsService, private getTournaments: GetTournamentService) {}
+  // variables
   nav = this.router.getCurrentNavigation();
   state = this.nav?.extras?.state ?? null;
   tournaments: {name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, 
@@ -20,6 +21,7 @@ export class ViewTournamentComponent implements OnInit {
   progressString: string = '';
   currentPosition: number = 0;
 
+  // get the number of tournament rounds
   getRounds(tournament: {name: string, location: string, date: string, 
     description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:string[]}) {
     if (tournament) {
@@ -30,6 +32,7 @@ export class ViewTournamentComponent implements OnInit {
     return 0;
   }
 
+  // get the number of participants per round
   getNumParticipants(rounds: number, currentRound: number) {
     if (rounds > 0 && rounds < 1000 && currentRound > 0) {
       return Math.pow(2, rounds) / Math.pow(2, currentRound);
@@ -37,6 +40,7 @@ export class ViewTournamentComponent implements OnInit {
     return 0;
   }
 
+  // update the tournament progression
   updateTournament() {
     const winner = localStorage.getItem('winner');
     if (winner) {
@@ -56,6 +60,7 @@ export class ViewTournamentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get tournament information
     this.getTournament.getTournament(this.state?.['nanoId'] ?? null).subscribe((data) =>{
       var entries = Object.entries(data);
       const newEntry: { name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, kingdom:string, tournamentParticipants:string[], progression:string[] } = {
@@ -84,11 +89,11 @@ export class ViewTournamentComponent implements OnInit {
       
       this.tournaments.push(newEntry);
       this.progressString = JSON.stringify(newEntry);
-      // this.getParticipant(newEntry, 0);
     });
 
   }
 
+  // make the participants draggable (not currently functioning)
   draggedParticipant: string | null = null;
 
   onDragStart(event: DragEvent, participantName: string): void {

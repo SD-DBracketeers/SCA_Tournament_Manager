@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get all tournament information
     this.getTournaments.getTournaments().subscribe((data) =>{
       var entries = Object.entries(data);
       entries.forEach(key => {
