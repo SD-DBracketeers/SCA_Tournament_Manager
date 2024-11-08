@@ -44,8 +44,12 @@ export class ViewTournamentComponent implements OnInit {
       this.getTournaments.updateTournament(this.tournaments[0].tournamentNanoID, this.tournaments[0].name, this.tournaments[0].eventType, 
         this.tournaments[0].kingdom,this.tournaments[0].location, this.tournaments[0].date, this.tournaments[0].description,
         this.tournaments[0].tournamentParticipants, this.tournaments[0].progression
-      )
+      );
       localStorage.removeItem('winner');
+      this.router.navigate(['/']).then(() => {
+        this.router.navigate(['/bracket'], { state: { nanoId: this.tournaments[0].tournamentNanoID } });
+      });
+
     } else {
       alert('No changes have been made');
     }
