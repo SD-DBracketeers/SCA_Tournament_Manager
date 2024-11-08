@@ -137,6 +137,6 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(participantNanoID))
+		w.Write([]byte("Participant updated successfully"))
 	}
 }
