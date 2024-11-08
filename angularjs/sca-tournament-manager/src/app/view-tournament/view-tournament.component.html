@@ -30,10 +30,12 @@
               ROUND {{i + 1}}
             </div>
             <ul class="matchup" *ngFor="let _ of [].constructor(getNumParticipants(getRounds(tournament),i+1)); let j = index">
-              <li class="team team-top">Duke<span class="score"></span></li>
-              <li class="team team-bottom">
-                Virginia<span class="score"></span>
-              </li>
+              <app-bracket-block
+                tournamentString="{{progressString}}" 
+                participantIndexOne="{{j*2}}" 
+                participantIndexTwo="{{j*2+1}}"
+                round="{{i}}">
+              </app-bracket-block>
             </ul>
           </div>
           

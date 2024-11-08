@@ -26,6 +26,7 @@ import { NewParticipantComponent } from './new-participant/new-participant.compo
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { ViewParticipantComponent } from './view-participant/view-participant.component';
 import { ListboxComponent } from './listbox/listbox.component';
+import { BracketBlockComponent } from './bracket-block/bracket-block.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ListboxComponent } from './listbox/listbox.component';
     NewParticipantComponent,
     UpdateParticipantComponent,
     ViewParticipantComponent,
-    ListboxComponent
+    ListboxComponent,
+    BracketBlockComponent
   ],
   imports: [
     BrowserModule,
