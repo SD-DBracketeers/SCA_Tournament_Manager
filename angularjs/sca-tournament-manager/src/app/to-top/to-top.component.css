@@ -1,20 +1,22 @@
 /* Footer container styling */
 .footer {
-    border-top: 2px solid #FFFF00; /* Yellow border */
     padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: flex-end; /* Align button to the right */
-    background-color: #36454F;
   }
   
   /* Button styling */
   .to-top-btn {
     background-color: transparent;
     border: none;
-    color: #FFFF00; /* Yellow text color */
+    border: 2px solid #FFFF00; 
+    border-radius: 5px;
+    margin: 20px;
+    background-color: #2e3a43;
+    color: #FFFF00; /* text color */
     font-size: 16px;
     cursor: pointer;
   }

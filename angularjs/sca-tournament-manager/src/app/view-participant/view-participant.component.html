@@ -1,0 +1,50 @@
+<div class="information-container">
+  <div class="back-button-container">
+    <app-back-button></app-back-button>
+  </div>
+
+  <!-- Flexbox Container for Form Sections -->
+  <div class="form-sections">
+    <!-- Left Section: Participant Information -->
+    <div class="left-section">
+      <h3>Participant Information</h3>
+
+      <img
+        class="kingdom-image"
+        src="https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png"
+      />
+
+      <h3>{{ name }}</h3>
+
+      <p class="base-stats">
+        <b>Wins:</b> {{ wins }} <br />
+        <b>Losses:</b> {{ losses }}<br />
+        <b>Rank:</b> {{ rank }}<br />
+        <b>Kingdom:</b> {{ kingdom }}<br />
+        <b>Type:</b> {{ combatType }}
+      </p>
+    </div>
+
+    <!-- Right Section: Tournament Results -->
+    <div class="right-section">
+      <h3>Tournaments</h3>
+
+      <table class="table table-bordered table-hover text-center">
+        <thead>
+          <tr>
+            <th>Tournament</th>
+            <th>Placement</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of result">
+            <td>{{ item.tournament }}</td>
+            <td>{{ item.placement }}</td>
+            <td>{{ item.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

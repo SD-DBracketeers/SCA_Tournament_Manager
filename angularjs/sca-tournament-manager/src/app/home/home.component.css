@@ -1,3 +1,19 @@
+h1 {
+  color: #ffff00;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+h2 {
+  color: #ffff00;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /* Add any necessary spacing between elements */
 .card {
     margin-top: 20px;

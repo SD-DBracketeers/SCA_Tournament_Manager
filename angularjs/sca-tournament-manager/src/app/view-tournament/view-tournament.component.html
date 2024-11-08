@@ -1,49 +1,62 @@
 <div class="tournament-view">
   <!-- Left Section: Tournament Info -->
-  <div class="tournament-info">
-    <div class="row justify-content-center" *ngFor="let tournament of tournaments">
-      <app-tournament-info title="{{tournament.name}}" loc="{{tournament.location}}"
-      date="{{tournament.date}}" description="{{tournament.description}}" nanoId="{{tournament.tournamentNanoID}}"
-       kingdomImageId="0"></app-tournament-info>
+  <div class="left_section">
+    <div
+      class="row justify-content-center"
+      *ngFor="let tournament of tournaments"
+    >
+      <app-tournament-info
+        title="{{ tournament.name }}"
+        loc="{{ tournament.location }}"
+        date="{{ tournament.date }}"
+        description="{{ tournament.description }}"
+        nanoId="{{ tournament.tournamentNanoID }}"
+        kingdomImageId="0"
+      ></app-tournament-info>
     </div>
   </div>
 
   <!-- Vertical Divider -->
   <div class="vertical-divider"></div>
-  
+
   <!-- Right Section: Bracket -->
-  <div class="tournament-bracket">
-    <!-- First Round -->
-    <div class="round">
-      <div class="match">
-        <span class="participant">Guy Smith</span>
-        <span class="connector vertical"></span>
-        <span class="participant">Girl Stone</span>
-      </div>
-      <!-- <span class="connector horizontal"></span> -->
-      <div class="match">
-        <span class="participant">Person Miller</span>
-        <span class="connector vertical"></span>
-        <span class="participant">Guy Smith II</span>
-      </div>
-    </div>
+  <!-- https://blog.codepen.io/2018/02/16/need-make-tournament-bracket/ -->
+  <div class="right_section" *ngFor="let tournament of tournaments">
+    <section id="bracket">
+      <div class="container">
+        <div class="split split-one">
+          <div class="round" *ngFor="let _ of [].constructor(getRounds(tournament)); let i = index">
+            <div class="round-details">
+              ROUND {{i + 1}}
+            </div>
+            <ul class="matchup" *ngFor="let _ of [].constructor(getNumParticipants(getRounds(tournament),i+1)); let j = index">
+              <app-bracket-block
+                tournamentString="{{progressString}}" 
+                participantIndexOne="{{j*2}}" 
+                participantIndexTwo="{{j*2+1}}"
+                round="{{i}}"
+                totalRounds="{{getRounds(tournament)}}">
+              </app-bracket-block>
+            </ul>
+          </div>
+          
+        </div> 
 
-    <!-- Second Round -->
-    <div class="round">
-      <div class="match">
-        <span class="participant">/</span>
-        <span class="connector vertical"></span>
-        <span class="participant">/</span>
+        <div class="champion">
+          <div class="final">
+            <i class="fa fa-trophy"></i>
+            <div class="round-details">
+              champion
+            </div>
+            <ul class="matchup championship">
+              <li class="team team-top">
+                &nbsp;<span class="vote-count">&nbsp;</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Third (Final) Round -->
-    <div class="round">
-      <div class="match">
-        <span class="participant">/</span>
-      </div>
-    </div>
-
-    <button class="update-bracket-btn">Update Bracket</button>
+    </section>
+    <button class="update-bracket-btn" (click)="updateTournament()">Update Bracket</button>
   </div>
 </div>

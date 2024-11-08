@@ -1,7 +1,10 @@
 /* Override the default navbar-default background color */
 .navbar-default {
-  background-color: #36454F; /* Your desired color */
-  border-color: #36454F;     /* Set border color to match */
+  background-color: #2e3a43; /* Desired background color */
+  border-bottom: 0.5px solid #FFFFFF; /* Underline color and thickness */
+  border-left: none; /* Remove the left border */
+  border-right: none; /* Remove the right border */
+  border-top: none; /* Remove the top border */
 }
 
 /* Change the link colors in the navbar */

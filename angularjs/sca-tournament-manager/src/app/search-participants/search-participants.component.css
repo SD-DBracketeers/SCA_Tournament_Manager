@@ -1,3 +1,15 @@
+.back-button-container,
+.add-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns the buttons to the left */
+}
+
+.add-button-container {
+  margin-top: 10px; /* Adjusts spacing between the Back and Add buttons */
+}
+
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -18,12 +30,17 @@
 
 .table td {
   color: #ffffff;
-  background-color: #36454f;
   border: none; /* Remove vertical borders */
+}
+.table tbody tr:nth-child(even) {
+  background-color: #36454f; /* Dark color */
+}
+.table tbody tr:nth-child(odd) {
+  background-color: #4d4f36; /* Lighter color */
 }
 
 .table thead tr {
-  background-color: #36454f;
+  background-color: #2e3a43;
 }
 
 .table tbody tr:last-child td:first-child {
@@ -48,6 +65,7 @@
   background-color: #ffff00;
   color: #000;
   border: none;
+  margin-bottom: 20px;
 }
 
 .example-form {
