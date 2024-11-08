@@ -34,7 +34,8 @@
                 tournamentString="{{progressString}}" 
                 participantIndexOne="{{j*2}}" 
                 participantIndexTwo="{{j*2+1}}"
-                round="{{i}}">
+                round="{{i}}"
+                totalRounds="{{getRounds(tournament)}}">
               </app-bracket-block>
             </ul>
           </div>
@@ -56,6 +57,6 @@
         </div>
       </div>
     </section>
-    <button class="update-bracket-btn">Update Bracket</button>
+    <button class="update-bracket-btn" (click)="updateTournament()">Update Bracket</button>
   </div>
 </div>

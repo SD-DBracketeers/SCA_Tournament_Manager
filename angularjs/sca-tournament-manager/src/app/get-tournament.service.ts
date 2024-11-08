@@ -31,4 +31,24 @@ export class GetTournamentService {
       error => console.error('Request failed:', error)
     );
   }
+  updateTournament(nanoID: string, name: string, eventType: string, kingdom: string, location: string, date: string, 
+    description: string, participants: string[], progression: string[]) {
+    return this.http.put('http://localhost:8080/tournaments/' + nanoID, {
+      tournamentNanoID: nanoID,
+      name: name,
+      eventType: eventType,
+      kingdom: kingdom,
+      location: location,
+      description: description,
+      tournamentParticipants: participants,
+      progression: progression,
+      date: date
+    }, {responseType: 'text'}).subscribe(
+      response => {
+        console.log('Request successful:', response);
+        localStorage.setItem('nanoID', response);
+      },
+      error => console.error('Request failed:', error)
+    );
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetTournamentByIdService } from '../get-tournament-by-id.service';
 import { GetParticipantsService } from '../get-participants.service';
+import { GetTournamentService } from '../get-tournament.service';
 
 
 @Component({
@@ -10,32 +11,17 @@ import { GetParticipantsService } from '../get-participants.service';
   styleUrls: ['./view-tournament.component.css']
 })
 export class ViewTournamentComponent implements OnInit {
-  constructor(private router: Router, public getTournament: GetTournamentByIdService, public getParticipantById: GetParticipantsService) {}
+  constructor(private router: Router, public getTournament: GetTournamentByIdService, 
+    public getParticipantById: GetParticipantsService, private getTournaments: GetTournamentService) {}
   nav = this.router.getCurrentNavigation();
   state = this.nav?.extras?.state ?? null;
-  tournaments: {name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:[], progression:[]}[] = []; 
+  tournaments: {name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, 
+    kingdom:string, tournamentParticipants:string[], progression:string[]}[] = []; 
   progressString: string = '';
-  
-  // getParticipant(tournament: {name: string, location: string, date: string, 
-  //   description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:[]},
-  //   index: number) {
-  //   const newVal: {name: string, nanoID: string} = {
-  //     name:'',
-  //     nanoID:''
-  //   }
-  //   const nanoID = tournament.tournamentParticipants[index];
-  //   this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
-  //     var entries = Object.entries(data);
-  //     entries.forEach(key => {
-  //       if (key[0] === 'name') newVal.name = key[1];
-  //       else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
-  //     });
-  //   });
-  //   console.log(newVal);
-  // }
+  currentPosition: number = 0;
 
   getRounds(tournament: {name: string, location: string, date: string, 
-    description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:[]}) {
+    description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:string[]}) {
     if (tournament) {
       if (tournament.tournamentParticipants) {
         return Math.ceil(Math.log2(tournament.tournamentParticipants.length));
@@ -51,16 +37,31 @@ export class ViewTournamentComponent implements OnInit {
     return 0;
   }
 
+  updateTournament() {
+    const winner = localStorage.getItem('winner');
+    if (winner) {
+      this.tournaments[0].progression.push(winner);
+      this.getTournaments.updateTournament(this.tournaments[0].tournamentNanoID, this.tournaments[0].name, this.tournaments[0].eventType, 
+        this.tournaments[0].kingdom,this.tournaments[0].location, this.tournaments[0].date, this.tournaments[0].description,
+        this.tournaments[0].tournamentParticipants, this.tournaments[0].progression
+      )
+      localStorage.removeItem('winner');
+    } else {
+      alert('No changes have been made');
+    }
+  }
+
   ngOnInit(): void {
     this.getTournament.getTournament(this.state?.['nanoId'] ?? null).subscribe((data) =>{
       var entries = Object.entries(data);
-      const newEntry: { name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, tournamentParticipants:[], progression:[] } = {
+      const newEntry: { name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, kingdom:string, tournamentParticipants:string[], progression:string[] } = {
         name: '',
         location: '',
         date: '',
         description: '',
         eventType: '',
         tournamentNanoID: '',
+        kingdom: '',
         tournamentParticipants: [],
         progression: []
       };
@@ -72,6 +73,7 @@ export class ViewTournamentComponent implements OnInit {
         else if (key[0] === 'description') newEntry.description = key[1];
         else if (key[0] === 'eventType') newEntry.eventType = key[1];
         else if (key[0] === 'tournamentNanoID') newEntry.tournamentNanoID = key[1];
+        else if (key[0] === 'kingdom') newEntry.kingdom = key[1];
         else if (key[0] === 'tournamentParticipants') newEntry.tournamentParticipants = key[1];
         else if (key[0] === 'progression') newEntry.progression = key[1];
       });
