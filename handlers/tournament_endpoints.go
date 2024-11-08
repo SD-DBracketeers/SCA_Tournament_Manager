@@ -140,6 +140,6 @@ func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Tournament updated successfully"))
+		w.Write([]byte(tournamentNanoID))
 	}
 }
