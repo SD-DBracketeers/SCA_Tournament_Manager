@@ -114,7 +114,6 @@ export class ViewTournamentComponent implements OnInit {
       this.progressString = JSON.stringify(newEntry);
       this.champion = this.getChamp();
     });
-    
 
   }
 
