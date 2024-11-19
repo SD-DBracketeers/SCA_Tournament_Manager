@@ -18,12 +18,6 @@ export class NewParticipantComponent {
   submitForm() {
     // Logic to save participant data
     this.getParticipant.createParticipant(this.name,this.kingdom,this.combatType,this. rank,this.verificationDate)
-    console.log('Participant Created:', {
-      name: this.name,
-      rank: this.rank,
-      combatType: this.combatType,
-      kingdom: this.kingdom,
-      verificationDate: this.verificationDate
-    });
+    this.router.navigate(['/search-participants']);
   }
 }

@@ -22,7 +22,7 @@ export class GetParticipantsService {
       kingdom: kingdom,
       rank: rank,
       tournamentParticipantIn: [],
-      verificationExpirationDate: new Date(date).toISOString()
+      verificationExperationDate: new Date(date).toISOString()
     }, {responseType: 'text'}).subscribe(
       response => {
         console.log('Request successful:', response);
