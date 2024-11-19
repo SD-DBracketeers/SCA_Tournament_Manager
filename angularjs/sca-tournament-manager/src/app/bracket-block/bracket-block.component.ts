@@ -22,15 +22,15 @@ export class BracketBlockComponent implements OnInit {
   @Input() round: string = '';
   @Input() totalRounds: string = '1';
 
-  participantOne = {name: '', nanoID: ''};
-  participantTwo = {name: '', nanoID: ''};
+  participantOne = {name: '   ', nanoID: ' '};
+  participantTwo = {name: '   ', nanoID: ' '};
 
   // queries the database to get the nanoID and name of the participants
   getParticipant(tournament: {tournamentParticipants:string[],progression:string[]},
     index: number, round: string) {
     const newVal: {name: string, nanoID: string} = {
-      name:'',
-      nanoID:''
+      name:'   ',
+      nanoID:' '
     }
     // gets the participant directly from the API for the first round
     if (index < tournament.tournamentParticipants.length && round === '0') {
@@ -46,6 +46,9 @@ export class BracketBlockComponent implements OnInit {
       // gets the participants for the second round
     } else if (index < tournament.progression.length && round === '1') {
       const nanoID = tournament.progression[index];
+      if (nanoID == ' ') {
+        return newVal;
+      }
       this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
         var entries = Object.entries(data);
         entries.forEach(key => {
@@ -67,6 +70,9 @@ export class BracketBlockComponent implements OnInit {
       // request for the participant information
       if (progressIndex < tournament.progression.length) {
         const nanoID = tournament.progression[progressIndex];
+        if (nanoID == ' ') {
+          return newVal;
+        }
         this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
           var entries = Object.entries(data);
           entries.forEach(key => {
