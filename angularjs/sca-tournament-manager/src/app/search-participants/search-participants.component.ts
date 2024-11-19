@@ -16,7 +16,7 @@ export class SearchParticipantsComponent implements OnInit {
 
   searchQuery: string = ''; // Bound to the search input field
 
-  participants: {name: string, rank: string, combatType: string, verificationExperationDate: string, 
+  participants: {name: string, rank: string, combatType: string, verificationExpirationDate: string, 
     kingdom: string, participantNanoID: string, isFound: boolean}[] = [];
   participantsList: string[] = [];
   participantNames: string[] = [];

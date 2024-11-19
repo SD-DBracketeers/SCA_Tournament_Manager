@@ -11,9 +11,11 @@ type Participant struct {
 	ParticipantNanoID          string             `bson:"participantNanoID" json:"participantNanoID"`
 	Name                       string             `bson:"name" json:"name"`
 	Rank                       string             `bson:"rank" json:"rank"`
-	VerificationExperationDate time.Time          `bson:"verificationExperationDate" json:"verificationExperationDate"`
+	VerificationExpirationDate time.Time          `bson:"verificationExpirationDate" json:"verificationExpirationDate"`
 	CreatedAt                  time.Time          `bson:"createdAt" json:"createdAt"`
 	CombatType                 string             `bson:"combatType" json:"combatType"`
 	Kingdom                    string             `bson:"kingdom" json:"kingdom"`
 	TournamentParticipantIn    []string           `bson:"tournamentParticipantIn" json:"tournamentParticipantIn"`
+	Wins                       int                `bson:"wins" json:"wins"`
+	Losses                     int                `bson:"losses" json:"losses"`
 }

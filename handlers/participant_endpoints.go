@@ -114,10 +114,12 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 			"$set": bson.M{
 				"name":                       updatedParticipant.Name,
 				"rank":                       updatedParticipant.Rank,
-				"verificationExperationDate": updatedParticipant.VerificationExperationDate,
+				"verificationExpirationDate": updatedParticipant.VerificationExpirationDate,
 				"combatType":                 updatedParticipant.CombatType,
 				"kingdom":                    updatedParticipant.Kingdom,
 				"tournamentParticipantIn":    updatedParticipant.TournamentParticipantIn,
+				"wins":                       updatedParticipant.Wins,
+				"losses":                     updatedParticipant.Losses,
 			},
 		}
 
