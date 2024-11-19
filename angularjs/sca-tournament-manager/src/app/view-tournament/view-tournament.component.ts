@@ -20,6 +20,7 @@ export class ViewTournamentComponent implements OnInit {
     kingdom:string, tournamentParticipants:string[], progression:string[]}[] = []; 
   progressString: string = '';
   currentPosition: number = 0;
+  champion: {name: String, nanoID: String} = {name: '', nanoID: ''};
 
   // get the number of tournament rounds
   getRounds(tournament: {name: string, location: string, date: string, 
@@ -58,6 +59,28 @@ export class ViewTournamentComponent implements OnInit {
       alert('No changes have been made');
     }
   }
+  getChamp() {
+    var progressIndex = 0;
+    var totalRounds = this.getRounds(this.tournaments[0]);
+    var count = 1;
+    while (count < totalRounds) {
+      progressIndex += Math.pow(2, totalRounds) / Math.pow(2, count);
+      count++;
+    }
+    var newVal = {name: '', nanoID: ''};
+    if (this.tournaments[0].progression.length-1 >= progressIndex) {
+      var nanoID = this.tournaments[0].progression[progressIndex];
+      this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
+        var entries = Object.entries(data);
+        entries.forEach(key => {
+          if (key[0] === 'name') newVal.name = key[1];
+          else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
+        });
+      });
+      return newVal;
+    }
+    return newVal;
+  }
 
   ngOnInit(): void {
     // get tournament information
@@ -89,7 +112,9 @@ export class ViewTournamentComponent implements OnInit {
       
       this.tournaments.push(newEntry);
       this.progressString = JSON.stringify(newEntry);
+      this.champion = this.getChamp();
     });
+    
 
   }
 
