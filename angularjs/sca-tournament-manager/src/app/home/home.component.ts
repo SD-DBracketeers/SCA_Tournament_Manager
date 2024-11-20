@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
       entries.forEach(key => {
         this.tournaments.push(key[1]);
       });
+      this.tournaments.reverse();
     });
   }
 

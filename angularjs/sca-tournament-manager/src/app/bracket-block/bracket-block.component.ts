@@ -97,4 +97,28 @@ export class BracketBlockComponent implements OnInit {
     this.participantOne = this.getParticipant(this.tournament, this.indexOne, this.round);
     this.participantTwo = this.getParticipant(this.tournament, this.indexTwo, this.round);
   }
+
+  // participant dragging logic
+  draggedParticipant: string | null = null;
+
+  onDragStart(event: DragEvent, participantName: string): void {
+    this.draggedParticipant = participantName;
+    if (event.dataTransfer) {
+      event.dataTransfer.setData('text/plain', participantName);
+      event.dataTransfer.effectAllowed = 'move';
+    }
+  }
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.dataTransfer!.dropEffect = 'move';
+  }
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    const target = event.target as HTMLElement;
+    const droppedName = event.dataTransfer?.getData('text/plain');
+    if (droppedName && target.tagName === 'P') {
+      target.textContent = droppedName;
+    }
+  }
 }
