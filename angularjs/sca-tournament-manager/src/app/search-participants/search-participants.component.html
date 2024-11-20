@@ -1,55 +1,49 @@
 <div class="container my-5">
-  <div class="back-button-container">
-    <app-back-button></app-back-button>
-  </div>
+    <div class="back-button-container">
+        <app-back-button></app-back-button>
+    </div>
 
-  <div class="add-button-container">
-    <button class="btn btn-warning mt-3" routerLink="/new-participant">
+    <div class="add-button-container">
+        <button class="btn btn-warning mt-3" routerLink="/new-participant">
       Add new participant
     </button>
-  </div>
+    </div>
 
-  <!-- Search Bar -->
-  <div class="search-wrapper">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search participants..."
-      [(ngModel)]="searchQuery"
-      name="search"
-    />
-    <button class="input-group-addon">
+    <!-- Search Bar -->
+    <div class="search-wrapper">
+        <input type="text" class="form-control" placeholder="Search participants..." [(ngModel)]="searchQuery" name="search" />
+        <button class="input-group-addon">
       <i class="glyphicon glyphicon-search"></i>
     </button>
-  </div>
+    </div>
 
-  
 
-  <!-- Participant List -->
-  <table class="table table-bordered table-hover text-center">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Rank</th>
-        <th>Combat Type</th>
-        <th>Expires</th>
-        <th>Kingdom</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
-      <tr *ngFor="let participant of participants">
-        <td>{{ participant.name }}</td>
-        <td>{{ participant.rank }}</td>
-        <td>{{ participant.combatType }}</td>
-        <td>{{ participant.verificationExpirationDate }}</td>
-        <td>{{ participant.kingdom }}</td>
-        <td>
-          <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
+
+    <!-- Participant List -->
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Combat Type</th>
+                <th>Expires</th>
+                <th>Kingdom</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
+            <tr *ngFor="let participant of participants">
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.rank }}</td>
+                <td>{{ participant.combatType }}</td>
+                <td>{{ participant.verificationExpirationDate }}</td>
+                <td>{{ participant.kingdom }}</td>
+                <td>
+                    <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
-          <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
+                    <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
             <i
               class="glyphicon"
               [ngClass]="
@@ -58,8 +52,8 @@
               (click)="toggleParticipants(participant.participantNanoID)"
             ></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

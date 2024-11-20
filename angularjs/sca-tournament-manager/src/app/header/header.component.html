@@ -1,25 +1,22 @@
+<!-- Header component to be used at the top of  every page-->
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <!-- Add the logo inside the navbar-brand link -->
-      <a class="navbar-brand" href="#">
-        <img
-          src="assets/sca_logo.png"
-          alt="Website Logo"
-          style="height: 25px; display: inline-block; margin-right: 10px"
-        />
-        <!-- SCA Tournament Manager -->
-      </a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!-- Add the logo inside the navbar-brand link -->
+            <a class="navbar-brand" href="#">
+                <img src="assets/sca_logo.png" alt="Website Logo" style="height: 25px; display: inline-block; margin-right: 10px" />
+                <!-- SCA Tournament Manager -->
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <!-- Add class="active" to change color on hover -->
+            <li><a href="#">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a routerLink="/bracket">Last Bracket</a></li>
+            <li><a routerLink="/search-participants">Search Participants</a></li>
+            <li><a style="color: #FFFF00;" routerLink="/create-tournament">Create Tournament</a></li>
+            <li><a routerLink="/logout">Logout</a></li>
+        </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <!-- Add class="active" to change color on hover -->
-      <li><a href="#">Home</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a routerLink="/bracket">Last Bracket</a></li>
-      <li><a routerLink="/search-participants">Search Participants</a></li>
-      <li><a style="color: #FFFF00;" routerLink="/create-tournament">Create Tournament</a></li>
-      <li><a routerLink="/logout">Logout</a></li>
-    </ul>
-  </div>
 </nav>
