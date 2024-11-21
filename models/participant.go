@@ -10,6 +10,8 @@ type Participant struct {
 	ParticipantID              primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	ParticipantNanoID          string             `bson:"participantNanoID" json:"participantNanoID"`
 	Name                       string             `bson:"name" json:"name"`
+	Username                   string             `bson:"username" json:"username"`
+	Password                   string             `bson:"password" json:"password"`
 	Rank                       string             `bson:"rank" json:"rank"`
 	VerificationExpirationDate time.Time          `bson:"verificationExpirationDate" json:"verificationExpirationDate"`
 	CreatedAt                  time.Time          `bson:"createdAt" json:"createdAt"`
