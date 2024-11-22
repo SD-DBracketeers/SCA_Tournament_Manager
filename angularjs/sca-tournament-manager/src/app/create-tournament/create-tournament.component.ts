@@ -19,6 +19,15 @@ export class CreateTournamentComponent implements OnInit {
   participants: [] = [];
   participantNames: [] = [];
 
+  // Error flags
+  nameError: boolean = false;
+  eventTypeError: boolean = false;
+  kingdomError: boolean = false;
+  locationError: boolean = false;
+  dateError: boolean = false;
+  descriptionError: boolean = false;
+  participantsError: boolean = false;
+
   // navigate to select participants
   navigateToParticipants() {
     this.saveFormData();
@@ -29,37 +38,20 @@ export class CreateTournamentComponent implements OnInit {
   submitForm() {
     this.saveFormData();
   
-    // Initialize an array to store error messages
-    let errorMessages = [];
+    // Initialize error flags
+    this.nameError = this.name === "";
+    this.eventTypeError = this.eventType === "";
+    this.kingdomError = this.kingdom === "";
+    this.locationError = this.location === "";
+    this.dateError = this.date === null;
+    this.descriptionError = this.description === "";
+    this.participantsError = !this.participants || this.participants.length === 0;
   
-    // Check each form field for emptiness and add error messages accordingly
-    if (this.name == "") {
-      errorMessages.push("Name");
-    }
-    if (this.eventType == "") {
-      errorMessages.push("Event Type");
-    }
-    if (this.kingdom == "") {
-      errorMessages.push("Kingdom");
-    }
-    if (this.location == "") {
-      errorMessages.push("Location");
-    }
-    if (this.date == null) {
-      errorMessages.push("Date");
-    }
-    if (this.description == "") {
-      errorMessages.push("Description");
-    }
-    if (!this.participants || this.participants.length === 0) {
-      errorMessages.push("Participants");
-    }
-  
-    // If there are errors, display an alert with the missing fields
-    if (errorMessages.length > 0) {
-      alert(`You didn't fill in the following fields: ${errorMessages.join(", ")}`);
+    // If any field has an error, don't proceed
+    if (this.nameError || this.eventTypeError || this.kingdomError || this.locationError || this.dateError || this.descriptionError || this.participantsError) {
+      alert("Please fill in all required fields.");
     } else {
-      // Proceed with form submission if no fields are missing
+      // Proceed with form submission
       this.createTournament(
         this.name, 
         this.eventType, 
@@ -71,6 +63,7 @@ export class CreateTournamentComponent implements OnInit {
       );
     }
   }
+  
   
 
   // save the form fields in localStorage so they can be accessed when users return to the page
