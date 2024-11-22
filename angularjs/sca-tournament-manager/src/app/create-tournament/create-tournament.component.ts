@@ -25,11 +25,53 @@ export class CreateTournamentComponent implements OnInit {
     this.router.navigate(['/search-participants']);
   }
 
-  // submit the form
+  //submit the form
   submitForm() {
     this.saveFormData();
-    this.createTournament(this.name, this.eventType, this.kingdom, this.location, this.date, this.description, this.participants);
+  
+    // Initialize an array to store error messages
+    let errorMessages = [];
+  
+    // Check each form field for emptiness and add error messages accordingly
+    if (this.name == "") {
+      errorMessages.push("Name");
+    }
+    if (this.eventType == "") {
+      errorMessages.push("Event Type");
+    }
+    if (this.kingdom == "") {
+      errorMessages.push("Kingdom");
+    }
+    if (this.location == "") {
+      errorMessages.push("Location");
+    }
+    if (this.date == null) {
+      errorMessages.push("Date");
+    }
+    if (this.description == "") {
+      errorMessages.push("Description");
+    }
+    if (!this.participants || this.participants.length === 0) {
+      errorMessages.push("Participants");
+    }
+  
+    // If there are errors, display an alert with the missing fields
+    if (errorMessages.length > 0) {
+      alert(`You didn't fill in the following fields: ${errorMessages.join(", ")}`);
+    } else {
+      // Proceed with form submission if no fields are missing
+      this.createTournament(
+        this.name, 
+        this.eventType, 
+        this.kingdom, 
+        this.location, 
+        this.date, 
+        this.description, 
+        this.participants
+      );
+    }
   }
+  
 
   // save the form fields in localStorage so they can be accessed when users return to the page
   saveFormData() {
