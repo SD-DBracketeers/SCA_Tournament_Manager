@@ -6,6 +6,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end; /* Align button to the right */
+    pointer-events: none;
   }
   
   /* Button styling */
@@ -19,9 +20,10 @@
     color: #FFFF00; /* text color */
     font-size: 16px;
     cursor: pointer;
+    pointer-events: auto;
   }
   
   .to-top-btn:hover {
-    text-decoration: underline; /* Optional: Add underline on hover */
+    text-decoration: underline; /* Add underline on hover */
   }
   
