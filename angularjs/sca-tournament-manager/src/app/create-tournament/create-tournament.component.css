@@ -59,6 +59,10 @@ input[type="date"] {
     font-weight: bold;
 }
 
+.participant-button:hover {
+    background-color: beige;
+}
+
 .create-button {
     background-color: #ffff00;
     color: #36454f;
@@ -69,6 +73,10 @@ input[type="date"] {
     cursor: pointer;
     font-weight: bold;
     align-items: end;
+}
+
+.create-button:hover {
+    background-color: #ffc107;
 }
 
 .icon {
