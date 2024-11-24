@@ -40,11 +40,11 @@
     <tbody>
       <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
       <tr *ngFor="let participant of participants">
-        <td>{{ participant.name }}</td>
-        <td>{{ participant.rank }}</td>
-        <td>{{ participant.combatType }}</td>
-        <td>{{ participant.verificationExperationDate }}</td>
-        <td>{{ participant.kingdom }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.name }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.rank }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.combatType }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.verificationExperationDate }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.kingdom }}</td>
         <td>
           <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
             <i class="glyphicon glyphicon-pencil"></i>

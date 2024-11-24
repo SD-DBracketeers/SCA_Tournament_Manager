@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { GetParticipantsService } from '../get-participants.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { GetParticipantsService } from '../get-participants.service';
   styleUrls: ['./search-participants.component.css'],
 })
 export class SearchParticipantsComponent implements OnInit {
-  constructor(private location: Location, public getParticipants: GetParticipantsService) {}
+  constructor(private location: Location, public getParticipants: GetParticipantsService, private router: Router) {}
 
   goBack(): void {
     this.location.back(); // Navigate to the previous page for back arrow
@@ -83,6 +84,10 @@ export class SearchParticipantsComponent implements OnInit {
       localStorage.removeItem("prevUrl");
     }
     return this.previousUrl;
+  }
+
+  viewParticipant (nanoID: string) {
+    this.router.navigate(['/view-participant'], { state: { nanoId: nanoID } });
   }
 
   ngOnInit(): void {
