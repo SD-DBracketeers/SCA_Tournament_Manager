@@ -28,6 +28,7 @@ import { ViewParticipantComponent } from './view-participant/view-participant.co
 import { ListboxComponent } from './listbox/listbox.component';
 import { BracketBlockComponent } from './bracket-block/bracket-block.component';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     GetParticipantsService,
     GetTournamentService,
-    GetTournamentByIdService
+    GetTournamentByIdService,
+    LoginService
   ],
   bootstrap: [AppComponent],
 })

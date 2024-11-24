@@ -9,6 +9,13 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
+  logout() {
+    localStorage.removeItem('loggedIn');
+  }
+  getLoggedInStatus() {
+    return localStorage.getItem('loggedIn');
+  }
+
   ngOnInit(): void {
   }
 

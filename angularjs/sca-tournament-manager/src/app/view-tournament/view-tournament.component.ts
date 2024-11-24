@@ -81,7 +81,9 @@ export class ViewTournamentComponent implements OnInit {
     }
     return newVal;
   }
-
+  getLoggedInStatus() {
+    return localStorage.getItem('loggedIn');
+  }
   ngOnInit(): void {
     // get tournament information
     this.getTournament.getTournament(this.state?.['nanoId'] ?? null).subscribe((data) =>{

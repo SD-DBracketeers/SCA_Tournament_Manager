@@ -89,6 +89,9 @@ export class SearchParticipantsComponent implements OnInit {
   viewParticipant (nanoID: string) {
     this.router.navigate(['/view-participant'], { state: { nanoId: nanoID } });
   }
+  getLoggedInStatus() {
+    return localStorage.getItem('loggedIn');
+  }
 
   ngOnInit(): void {
     // get the whole list of participants

@@ -61,6 +61,6 @@
         </div>
       </div>
     </section>
-    <button class="update-bracket-btn" (click)="updateTournament()">Update Bracket</button>
+    <button class="update-bracket-btn" (click)="updateTournament()" *ngIf="getLoggedInStatus() == 'logged in'">Update Bracket</button>
   </div>
 </div>
