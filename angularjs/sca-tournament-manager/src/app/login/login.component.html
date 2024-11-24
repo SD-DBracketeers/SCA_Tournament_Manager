@@ -20,6 +20,7 @@
           id="username"
           name="username"
           placeholder="Enter your username"
+          [(ngModel)]="username"
         />
 
         <label for="password">Password</label>
@@ -28,10 +29,11 @@
           id="password"
           name="password"
           placeholder="Enter your password"
+          [(ngModel)]="password"
         />
 
         <div class="form-actions">
-          <a class="forgot-password">Forgot password?</a>
+          <!-- <a class="forgot-password">Forgot password?</a> -->
           <button type="submit">Login</button>
         </div>
       </form>

@@ -2,13 +2,15 @@
   class="team team-top"
   draggable="true"
   (dragstart)="onSelect(participantOne)"
+  (click)="viewParticipant(participantOne.nanoID)"
 >
   {{ participantOne.name }}<span class="score"></span>
 </li>
 <li
   class="team team-bottom"
   draggable="true"
-  (dragstart)="onSelect(participantOne)"
+  (dragstart)="onSelect(participantTwo)"
+  (click)="viewParticipant(participantTwo.nanoID)"
 >
   {{ participantTwo.name }}<span class="score"></span>
 </li>

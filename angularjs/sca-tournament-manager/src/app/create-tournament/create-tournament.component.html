@@ -1,37 +1,39 @@
+<!-- Create tournament page, form that handles all information to be handed off to the post api call -->
 <h2>Create Tournament</h2>
 
 <form #tournamentForm="ngForm" class="create-tournament" (ngSubmit)="submitForm()">
     <!-- Left Section: Form Inputs -->
     <div class="left-section">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="Enter tournament name" [ngClass]="{'error': nameError}" />
+        <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="Enter tournament name" />
 
         <label for="eventType">Event Type</label>
-        <select id="eventType" name="eventType" [(ngModel)]="eventType" [ngClass]="{'error': eventTypeError}">
+        <select id="eventType" name="eventType" [(ngModel)]="eventType">
       <option>Heavy</option>
       <option>Rapier</option>
     </select>
 
         <label for="kingdom">Kingdom</label>
-        <select id="kingdom" name="kingdom" [(ngModel)]="kingdom" [ngClass]="{'error': kingdomError}">
+        <select id="kingdom" name="kingdom" [(ngModel)]="kingdom">
       <option>Ansteorra</option>
       <option>East Kingdom</option>
     </select>
 
         <label for="location">Location</label>
-        <input type="text" id="location" name="location" [(ngModel)]="location" placeholder="Enter tournament location" [ngClass]="{'error': locationError}" />
+        <input type="text" id="location" name="location" [(ngModel)]="location" placeholder="Enter tournament location" />
 
         <label for="description">Description</label>
-        <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter tournament description" [ngClass]="{'error': descriptionError}"></textarea>
+        <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter tournament description"></textarea>
     </div>
 
     <!-- Right Section: Calendar and Buttons -->
     <div class="right-section">
         <label for="date">Date</label>
-        <input type="date" id="date" name="date" [(ngModel)]="date" [ngClass]="{'error': dateError}" />
+        <input type="date" id="date" name="date" [(ngModel)]="date" />
 
+        <!-- In another component's HTML file -->
         <label for="listbox">Participants</label>
-        <app-listbox [items]="participantNames" [ngClass]="{'error': participantsError}"></app-listbox>
+        <app-listbox [items]="participantNames"></app-listbox>
 
         <button (click)="navigateToParticipants()" class="participant-button">
       Add List of Participants

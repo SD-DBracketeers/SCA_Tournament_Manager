@@ -1,29 +1,22 @@
 <div class="container my-5">
-  <div class="back-button-container">
-    <app-back-button></app-back-button>
-  </div>
+    <div class="back-button-container">
+        <app-back-button></app-back-button>
+    </div>
 
-  <div class="add-button-container">
-    <button class="btn btn-warning mt-3" routerLink="/new-participant">
+    <div class="add-button-container">
+        <button class="btn btn-warning mt-3" routerLink="/new-participant">
       Add new participant
     </button>
-  </div>
+    </div>
 
-  <!-- Search Bar -->
-  <div class="search-wrapper">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Search participants..."
-      [(ngModel)]="searchQuery"
-      name="search"
-    />
-    <button class="input-group-addon">
+    <!-- Search Bar -->
+    <div class="search-wrapper">
+        <input type="text" class="form-control" placeholder="Search participants..." [(ngModel)]="searchQuery" name="search" />
+        <button class="input-group-addon">
       <i class="glyphicon glyphicon-search"></i>
     </button>
-  </div>
+    </div>
 
-  
 
   <!-- Participant List -->
   <table class="table table-bordered table-hover text-center">
@@ -43,23 +36,21 @@
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.name }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.rank }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.combatType }}</td>
-        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.verificationExperationDate }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.verificationExpirationDate }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.kingdom }}</td>
         <td>
           <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
-          <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
+                    <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
             <i
               class="glyphicon"
-              [ngClass]="
-                participant.isFound ? 'glyphicon-minus' : 'glyphicon-plus'
-              "
+              [ngClass]="participant.isFound ? 'glyphicon-minus' : 'glyphicon-plus'"
               (click)="toggleParticipants(participant.participantNanoID)"
             ></i>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

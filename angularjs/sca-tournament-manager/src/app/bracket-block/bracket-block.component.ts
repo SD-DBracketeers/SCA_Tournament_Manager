@@ -90,6 +90,10 @@ export class BracketBlockComponent implements OnInit {
     localStorage.setItem('winner', participant.nanoID);
   }
 
+  viewParticipant (nanoID: string) {
+    this.router.navigate(['/view-participant'], { state: { nanoId: nanoID } });
+  }
+
   ngOnInit(): void {
     this.tournament = JSON.parse(this.tournamentString);
     this.indexOne = Number(this.participantIndexOne);

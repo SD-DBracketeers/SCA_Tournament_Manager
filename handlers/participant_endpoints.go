@@ -114,10 +114,12 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 			"$set": bson.M{
 				"name":                       updatedParticipant.Name,
 				"rank":                       updatedParticipant.Rank,
-				"verificationExperationDate": updatedParticipant.VerificationExperationDate,
+				"verificationExpirationDate": updatedParticipant.VerificationExpirationDate,
 				"combatType":                 updatedParticipant.CombatType,
 				"kingdom":                    updatedParticipant.Kingdom,
 				"tournamentParticipantIn":    updatedParticipant.TournamentParticipantIn,
+				"wins":                       updatedParticipant.Wins,
+				"losses":                     updatedParticipant.Losses,
 			},
 		}
 
@@ -139,4 +141,37 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Participant updated successfully"))
 	}
+}
+
+func CheckLogin(db *mongo.Database) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)              // Get URL parameters using gorilla/mux
+		username, ok := vars["username"] // Extract participantNanoID from the route
+		if !ok || username == "" {
+			http.Error(w, "Missing username", http.StatusBadRequest)
+			return
+		}
+
+		password, ok := vars["password"] // Extract participantNanoID from the route
+		if !ok || password == "" {
+			http.Error(w, "Missing password", http.StatusBadRequest)
+			return
+		}
+
+		//Check if there is a document with that username and password.
+		// Query the database for the participant
+		var participant models.Participant
+		collection := db.Collection("Participants")
+		err := collection.FindOne(context.Background(), bson.M{"password": password, "username": username}).Decode(&participant)
+		if err != nil {
+			http.Error(w, "Participant not found", http.StatusNotFound)
+			return
+		}
+
+		// Return the participant as JSON
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode("Login successfull")
+
+	}
+
 }

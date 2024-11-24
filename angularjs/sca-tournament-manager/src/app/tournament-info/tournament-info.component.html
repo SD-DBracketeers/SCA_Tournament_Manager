@@ -1,11 +1,14 @@
+<!-- Tournament info component that takes in a title, location, date, and description 
+ to create a div displaying all of that information for the main page -->
+
 <div class="col-md-4">
     <div class="card text-center" style="border: none; background-color: transparent;">
-      <img [src]="kingdomImageUrl" class="card-img-top mx-auto" style="width: 80%; max-width: 200px;" alt="{{title}}">
-      <div class="card-body">
-        <h5 class="card-title view-tournament-title" style="color: #FFFF00;">{{title}}</h5>
-        <p class="card-text text-white">{{loc}}</p>
-        <p class="card-text text-white">{{date}}</p>
-        <p class="card-text text-white">{{description}}</p>
-      </div>
+        <img [src]="kingdomImageUrl" class="card-img-top mx-auto" style="width: 80%; max-width: 200px;" alt="{{title}}">
+        <div class="card-body">
+            <h5 class="card-title view-tournament-title" style="color: #FFFF00;">{{title}}</h5>
+            <p class="card-text text-white">{{loc}}</p>
+            <p class="card-text text-white">{{date}}</p>
+            <p class="card-text text-white">{{description}}</p>
+        </div>
     </div>
-  </div>
+</div>
