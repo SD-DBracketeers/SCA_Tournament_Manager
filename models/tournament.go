@@ -19,3 +19,17 @@ type Tournament struct {
 	Participants     []string           `bson:"tournamentParticipants" json:"tournamentParticipants"`
 	Progression      []string           `bson:"progression" json:"progression"`
 }
+
+type TournamentResponse struct {
+	TournamentID     primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	TournamentNanoID string             `bson:"tournamentNanoID" json:"tournamentNanoID"`
+	Name             string             `bson:"name" json:"name"`
+	EventType        string             `bson:"eventType" json:"eventType"`
+	Kingdom          string             `bson:"kingdom" json:"kingdom"`
+	Location         string             `bson:"location" json:"location"`
+	Date             string             `bson:"date" json:"date"`
+	Description      string             `bson:"description" json:"description"`
+	CreatedAt        string             `bson:"createdAt" json:"createdAt"`
+	Participants     []string           `bson:"tournamentParticipants" json:"tournamentParticipants"`
+	Progression      []string           `bson:"progression" json:"progression"`
+}

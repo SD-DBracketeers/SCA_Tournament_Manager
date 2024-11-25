@@ -18,10 +18,8 @@ import (
 )
 
 // GetTournaments retrieves all tournaments from the MongoDB collection
-// GetTournaments retrieves all tournaments from the MongoDB collection
 func GetTournaments(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var tournaments []models.Tournament
 		collection := db.Collection("Tournaments")
 		cursor, err := collection.Find(context.Background(), bson.M{})
 		if err != nil {
@@ -30,13 +28,36 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 		}
 		defer cursor.Close(context.Background())
 
+		var tournamentsResponse []models.TournamentResponse
+
 		for cursor.Next(context.Background()) {
 			var tournament models.Tournament
-			cursor.Decode(&tournament)
-			tournaments = append(tournaments, tournament)
+			if err := cursor.Decode(&tournament); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+
+			// Convert time.Time fields to string representations
+			tournamentResponse := models.TournamentResponse{
+				TournamentID:     tournament.TournamentID,
+				TournamentNanoID: tournament.TournamentNanoID,
+				Name:             tournament.Name,
+				EventType:        tournament.EventType,
+				Kingdom:          tournament.Kingdom,
+				Location:         tournament.Location,
+				Date:             tournament.Date.Format(time.RFC3339), // Format to JS-compatible string
+				Description:      tournament.Description,
+				CreatedAt:        tournament.CreatedAt.Format(time.RFC3339), // Format to JS-compatible string
+				Participants:     tournament.Participants,
+				Progression:      tournament.Progression,
+			}
+
+			tournamentsResponse = append(tournamentsResponse, tournamentResponse)
 		}
 
-		json.NewEncoder(w).Encode(tournaments)
+		// Encode the response with the time fields as strings
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(tournamentsResponse)
 	}
 }
 
@@ -69,8 +90,8 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 func GetTournament(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the tournamentNanoID from the URL parameters
-		vars := mux.Vars(r)                              // Get URL parameters using gorilla/mux
-		tournamentNanoID, ok := vars["tournamentNanoID"] // Extract tournamentNanoID from the route
+		vars := mux.Vars(r)
+		tournamentNanoID, ok := vars["tournamentNanoID"]
 		if !ok || tournamentNanoID == "" {
 			http.Error(w, "Missing tournamentNanoID", http.StatusBadRequest)
 			return
@@ -85,9 +106,24 @@ func GetTournament(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
+		// Convert time.Time fields to string representations
+		tournamentResponse := models.TournamentResponse{
+			TournamentID:     tournament.TournamentID,
+			TournamentNanoID: tournament.TournamentNanoID,
+			Name:             tournament.Name,
+			EventType:        tournament.EventType,
+			Kingdom:          tournament.Kingdom,
+			Location:         tournament.Location,
+			Date:             tournament.Date.Format(time.RFC3339), // Format to JS-compatible string
+			Description:      tournament.Description,
+			CreatedAt:        tournament.CreatedAt.Format(time.RFC3339), // Format to JS-compatible string
+			Participants:     tournament.Participants,
+			Progression:      tournament.Progression,
+		}
+
 		// Return the tournament as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tournament)
+		json.NewEncoder(w).Encode(tournamentResponse)
 	}
 }
 
