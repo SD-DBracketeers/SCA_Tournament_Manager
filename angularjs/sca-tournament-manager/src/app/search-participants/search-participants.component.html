@@ -39,7 +39,7 @@
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.verificationExpirationDate }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.kingdom }}</td>
         <td>
-          <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant" *ngIf="getLoggedInStatus() == 'logged in'">
+          <button class="btn btn-outline-light btn-sm ml-2" (click)="updateParticipant(participant)" *ngIf="getLoggedInStatus() == 'logged in'">
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
                     <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">

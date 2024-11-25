@@ -20,16 +20,17 @@
         name="name"
         [(ngModel)]="name"
         placeholder="Enter participant name"
+        value="{{name}}"
       />
 
       <label for="kingdom">Kingdom</label>
-      <select id="kingdom" name="kingdom" [(ngModel)]="kingdom">
+      <select id="kingdom" name="kingdom" [(ngModel)]="kingdom" value="{{kingdom}}">
         <option>Ansteorra</option>
         <option>East Kingdom</option>
       </select>
 
       <label for="combatType">Combat Type</label>
-      <select id="combatType" name="combatType" [(ngModel)]="combatType">
+      <select id="combatType" name="combatType" [(ngModel)]="combatType" value="{{combatType}}">
         <option>Heavy</option>
         <option>Rapier</option>
       </select>
@@ -38,7 +39,7 @@
     <!-- Right Section: Date Picker -->
     <div class="right-section">
       <label for="rank">Rank</label>
-      <select id="rank" name="rank" [(ngModel)]="rank">
+      <select id="rank" name="rank" [(ngModel)]="rank" value="{{rank}}">
         <option>Knight</option>
         <option>MoD</option>
         <option>AoA</option>
@@ -50,6 +51,7 @@
         id="verificationDate"
         name="verificationDate"
         [(ngModel)]="verificationDate"
+        value="{{verificationDate}}"
       />
 
       <button type="submit" class="create-button">Update Participant</button>

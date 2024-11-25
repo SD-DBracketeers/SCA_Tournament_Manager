@@ -89,6 +89,10 @@ export class SearchParticipantsComponent implements OnInit {
   viewParticipant (nanoID: string) {
     this.router.navigate(['/view-participant'], { state: { nanoId: nanoID } });
   }
+  updateParticipant(participant: {name: string, rank: string, combatType: string, verificationExpirationDate: string, 
+    kingdom: string, participantNanoID: string}) {
+    this.router.navigate(['/update-participant'], {state: {participant: participant}});
+  }
   getLoggedInStatus() {
     return localStorage.getItem('loggedIn');
   }
