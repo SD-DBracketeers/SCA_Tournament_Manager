@@ -25,9 +25,9 @@
         <th>Name</th>
         <th>Rank</th>
         <th>Combat Type</th>
-        <th>Expires</th>
+        <th *ngIf="getLoggedInStatus() == 'logged in'">Expires</th>
         <th>Kingdom</th>
-        <th>Action</th>
+        <th *ngIf="getLoggedInStatus() == 'logged in'">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -36,7 +36,7 @@
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.name }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.rank }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.combatType }}</td>
-        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.verificationExpirationDate }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)" *ngIf="getLoggedInStatus() == 'logged in'">{{ participant.verificationExpirationDate }}</td>
         <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.kingdom }}</td>
         <td>
           <button class="btn btn-outline-light btn-sm ml-2" (click)="updateParticipant(participant)" *ngIf="getLoggedInStatus() == 'logged in'">
