@@ -1,72 +1,84 @@
 .create-tournament {
-  display: flex;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.error {
+    border: 2px solid red;
 }
 
 h2 {
-  color: #ffff00;
-  text-align: center;
-  width: 100%;
-  margin-top: 30px;
+    color: #ffff00;
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
 }
 
 .left-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
 }
 
 .right-section {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-  color: #d2d2d2;
-  margin-top: 10px;
+    color: #d2d2d2;
+    margin-top: 10px;
 }
 
 input[type="text"],
 select,
 textarea,
 input[type="date"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border: 1px solid #ffff00;
-  border-radius: 5px;
-  background-color: white;
-  color: #36454f;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ffff00;
+    border-radius: 5px;
+    background-color: white;
+    color: #36454f;
 }
 
 .participant-button {
-  background-color: white;
-  color: #36454f;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-weight: bold;
+    background-color: white;
+    color: #36454f;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.participant-button:hover {
+    background-color: beige;
 }
 
 .create-button {
-  background-color: #ffff00;
-  color: #36454f;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  align-items: end;
+    background-color: #ffff00;
+    color: #36454f;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    align-items: end;
+}
+
+.create-button:hover {
+    background-color: #ffc107;
 }
 
 .icon {
-  margin-left: 5px;
+    margin-left: 5px;
 }

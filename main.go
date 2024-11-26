@@ -92,7 +92,7 @@ func main() {
 	router.HandleFunc("/tournaments/{tournamentNanoID}", api.UpdateTournament(db)).Methods("PUT")
 
 	//login route
-	router.HandleFunc("/login/{username}/{password}", api.GetTournaments(db)).Methods("GET")
+	router.HandleFunc("/login/{username}/{password}", api.CheckLogin(db)).Methods("GET")
 	// Start the server
 	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(handlers.AllowedOrigins([]string{"http://localhost:4200"}),
 		handlers.AllowedMethods([]string{"GET", "POST", "PUT"}),

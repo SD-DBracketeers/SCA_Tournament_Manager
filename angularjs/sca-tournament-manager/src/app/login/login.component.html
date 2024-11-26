@@ -1,0 +1,42 @@
+<div class="information-container">
+  <div class="form-sections">
+    <!-- Left Section -->
+    <div class="left-section">
+        <img
+          src="assets/sca_logo.png"
+          alt="Website Logo"
+          style="display: inline-block"
+          href="#"
+        />
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <h3>Admin Login</h3>
+      <form>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          [(ngModel)]="username"
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
+
+        <div class="form-actions">
+          <!-- <a class="forgot-password">Forgot password?</a> -->
+          <button type="submit" (click)="onSubmit()">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

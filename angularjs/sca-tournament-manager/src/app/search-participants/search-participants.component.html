@@ -18,37 +18,34 @@
     </div>
 
 
-
-    <!-- Participant List -->
-    <table class="table table-bordered table-hover text-center">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Rank</th>
-                <th>Combat Type</th>
-                <th>Expires</th>
-                <th>Kingdom</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
-            <tr *ngFor="let participant of participants">
-                <td>{{ participant.name }}</td>
-                <td>{{ participant.rank }}</td>
-                <td>{{ participant.combatType }}</td>
-                <td>{{ participant.verificationExpirationDate }}</td>
-                <td>{{ participant.kingdom }}</td>
-                <td>
-                    <button class="btn btn-outline-light btn-sm ml-2" routerLink="/update-participant">
+  <!-- Participant List -->
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Combat Type</th>
+        <th *ngIf="getLoggedInStatus() == 'logged in'">Expires</th>
+        <th>Kingdom</th>
+        <th *ngIf="getLoggedInStatus() == 'logged in'">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Routing here would be like on the homepage, routerLink is just a quick temporary solution -->
+      <tr *ngFor="let participant of participants">
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.name }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.rank }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.combatType }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)" *ngIf="getLoggedInStatus() == 'logged in'">{{ participant.verificationExpirationDate }}</td>
+        <td (click)="viewParticipant(participant.participantNanoID)">{{ participant.kingdom }}</td>
+        <td>
+          <button class="btn btn-outline-light btn-sm ml-2" (click)="updateParticipant(participant)" *ngIf="getLoggedInStatus() == 'logged in'">
             <i class="glyphicon glyphicon-pencil"></i>
           </button>
                     <button *ngIf="getPreviousUrl() == 'create-tournament'" class="btn btn-outline-light btn-sm">
             <i
               class="glyphicon"
-              [ngClass]="
-                participant.isFound ? 'glyphicon-minus' : 'glyphicon-plus'
-              "
+              [ngClass]="participant.isFound ? 'glyphicon-minus' : 'glyphicon-plus'"
               (click)="toggleParticipants(participant.participantNanoID)"
             ></i>
           </button>

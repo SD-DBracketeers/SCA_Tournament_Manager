@@ -20,6 +20,7 @@ export class ViewTournamentComponent implements OnInit {
     kingdom:string, tournamentParticipants:string[], progression:string[]}[] = []; 
   progressString: string = '';
   currentPosition: number = 0;
+  champion: {name: String, nanoID: String} = {name: '', nanoID: ''};
 
   // get the number of tournament rounds
   getRounds(tournament: {name: string, location: string, date: string, 
@@ -58,7 +59,31 @@ export class ViewTournamentComponent implements OnInit {
       alert('No changes have been made');
     }
   }
-
+  getChamp() {
+    var progressIndex = 0;
+    var totalRounds = this.getRounds(this.tournaments[0]);
+    var count = 1;
+    while (count < totalRounds) {
+      progressIndex += Math.pow(2, totalRounds) / Math.pow(2, count);
+      count++;
+    }
+    var newVal = {name: '', nanoID: ''};
+    if (this.tournaments[0].progression.length-1 >= progressIndex) {
+      var nanoID = this.tournaments[0].progression[progressIndex];
+      this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
+        var entries = Object.entries(data);
+        entries.forEach(key => {
+          if (key[0] === 'name') newVal.name = key[1];
+          else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
+        });
+      });
+      return newVal;
+    }
+    return newVal;
+  }
+  getLoggedInStatus() {
+    return localStorage.getItem('loggedIn');
+  }
   ngOnInit(): void {
     // get tournament information
     this.getTournament.getTournament(this.state?.['nanoId'] ?? null).subscribe((data) =>{
@@ -89,34 +114,9 @@ export class ViewTournamentComponent implements OnInit {
       
       this.tournaments.push(newEntry);
       this.progressString = JSON.stringify(newEntry);
+      this.champion = this.getChamp();
     });
 
-  }
-
-  // make the participants draggable (not currently functioning)
-  draggedParticipant: string | null = null;
-
-  onDragStart(event: DragEvent, participantName: string): void {
-    this.draggedParticipant = participantName;
-    if (event.dataTransfer) {
-      event.dataTransfer.setData('text/plain', participantName);
-      event.dataTransfer.effectAllowed = 'move';
-    }
-  }
-
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
-    event.dataTransfer!.dropEffect = 'move';
-  }
-
-  onDrop(event: DragEvent): void {
-    event.preventDefault();
-    const target = event.target as HTMLElement;
-    const droppedName = event.dataTransfer?.getData('text/plain');
-
-    if (droppedName && target.tagName === 'P') {
-      target.textContent = droppedName;
-    }
   }
 
 }

@@ -19,17 +19,52 @@ export class CreateTournamentComponent implements OnInit {
   participants: [] = [];
   participantNames: [] = [];
 
+  // Error flags
+  nameError: boolean = false;
+  eventTypeError: boolean = false;
+  kingdomError: boolean = false;
+  locationError: boolean = false;
+  dateError: boolean = false;
+  descriptionError: boolean = false;
+  participantsError: boolean = false;
+
   // navigate to select participants
   navigateToParticipants() {
     this.saveFormData();
     this.router.navigate(['/search-participants']);
   }
 
-  // submit the form
+  //submit the form
   submitForm() {
     this.saveFormData();
-    this.createTournament(this.name, this.eventType, this.kingdom, this.location, this.date, this.description, this.participants);
+  
+    // Initialize error flags
+    this.nameError = this.name === "";
+    this.eventTypeError = this.eventType === "";
+    this.kingdomError = this.kingdom === "";
+    this.locationError = this.location === "";
+    this.dateError = this.date === null;
+    this.descriptionError = this.description === "";
+    this.participantsError = !this.participants || this.participants.length === 0;
+  
+    // If any field has an error, don't proceed
+    if (this.nameError || this.eventTypeError || this.kingdomError || this.locationError || this.dateError || this.descriptionError || this.participantsError) {
+      alert("Please fill in all required fields.");
+    } else {
+      // Proceed with form submission
+      this.createTournament(
+        this.name, 
+        this.eventType, 
+        this.kingdom, 
+        this.location, 
+        this.date, 
+        this.description, 
+        this.participants
+      );
+    }
   }
+  
+  
 
   // save the form fields in localStorage so they can be accessed when users return to the page
   saveFormData() {

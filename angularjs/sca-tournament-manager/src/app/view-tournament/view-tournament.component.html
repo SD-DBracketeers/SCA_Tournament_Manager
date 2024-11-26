@@ -1,4 +1,7 @@
 <div class="tournament-view">
+  <div class="back-button-container">
+    <app-back-button></app-back-button>
+  </div>
   <!-- Left Section: Tournament Info -->
   <div class="left_section">
     <div
@@ -50,13 +53,14 @@
             </div>
             <ul class="matchup championship">
               <li class="team team-top">
-                &nbsp;<span class="vote-count">&nbsp;</span>
+                <!-- &nbsp;<span class="vote-count">&nbsp;</span> -->
+                 {{champion.name}}
               </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-    <button class="update-bracket-btn" (click)="updateTournament()">Update Bracket</button>
+    <button class="update-bracket-btn" (click)="updateTournament()" *ngIf="getLoggedInStatus() == 'logged in'">Update Bracket</button>
   </div>
 </div>

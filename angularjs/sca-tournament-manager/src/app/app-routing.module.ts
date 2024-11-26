@@ -7,6 +7,7 @@ import { CreateTournamentComponent } from './create-tournament/create-tournament
 import { NewParticipantComponent } from './new-participant/new-participant.component';
 import { UpdateParticipantComponent } from './update-participant/update-participant.component';
 import { ViewParticipantComponent } from './view-participant/view-participant.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Default route to Home
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'new-participant', component: NewParticipantComponent },
   { path: 'update-participant', component: UpdateParticipantComponent },
   { path: 'view-participant', component: ViewParticipantComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

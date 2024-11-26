@@ -20,7 +20,6 @@ import (
 // GetParticipants retrieves all participants from the MongoDB collection
 func GetParticipants(db *mongo.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var participants []models.Participant
 		collection := db.Collection("Participants")
 		cursor, err := collection.Find(context.Background(), bson.M{})
 		if err != nil {
@@ -29,13 +28,43 @@ func GetParticipants(db *mongo.Database) http.HandlerFunc {
 		}
 		defer cursor.Close(context.Background())
 
+		var participantsResponse []models.ParticipantResponse
+
 		for cursor.Next(context.Background()) {
 			var participant models.Participant
-			cursor.Decode(&participant)
-			participants = append(participants, participant)
+			if err := cursor.Decode(&participant); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+
+			// Convert time.Time fields to string representations
+			participantResponse := models.ParticipantResponse{
+				ParticipantID:              participant.ParticipantID,
+				ParticipantNanoID:          participant.ParticipantNanoID,
+				Name:                       participant.Name,
+				Username:                   participant.Username,
+				Password:                   participant.Password,
+				Rank:                       participant.Rank,
+				VerificationExpirationDate: participant.VerificationExpirationDate.Format(time.RFC3339), // Format to JS-compatible string
+				CreatedAt:                  participant.CreatedAt.Format(time.RFC3339),                  // Format to JS-compatible string
+				CombatType:                 participant.CombatType,
+				Kingdom:                    participant.Kingdom,
+				TournamentParticipantIn:    participant.TournamentParticipantIn,
+				Wins:                       participant.Wins,
+				Losses:                     participant.Losses,
+			}
+
+			participantsResponse = append(participantsResponse, participantResponse)
 		}
 
-		json.NewEncoder(w).Encode(participants)
+		if err := cursor.Err(); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// Encode the response with the time fields as strings
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(participantsResponse)
 	}
 }
 
@@ -84,9 +113,26 @@ func GetParticipant(db *mongo.Database) http.HandlerFunc {
 			return
 		}
 
+		// Create a response struct with time.Time fields as strings
+		participantResponse := models.ParticipantResponse{
+			ParticipantID:              participant.ParticipantID,
+			ParticipantNanoID:          participant.ParticipantNanoID,
+			Name:                       participant.Name,
+			Username:                   participant.Username,
+			Password:                   participant.Password,
+			Rank:                       participant.Rank,
+			VerificationExpirationDate: participant.VerificationExpirationDate.Format(time.RFC3339), // Format to JS-compatible string
+			CreatedAt:                  participant.CreatedAt.Format(time.RFC3339),                  // Format to JS-compatible string
+			CombatType:                 participant.CombatType,
+			Kingdom:                    participant.Kingdom,
+			TournamentParticipantIn:    participant.TournamentParticipantIn,
+			Wins:                       participant.Wins,
+			Losses:                     participant.Losses,
+		}
+
 		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participant)
+		json.NewEncoder(w).Encode(participantResponse)
 	}
 }
 
