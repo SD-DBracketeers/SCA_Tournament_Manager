@@ -35,18 +35,48 @@ Third-party resources:
     https://material.angular.io/components/datepicker/overview
     https://material.angular.io/components/form-field/overview
 
-How to initalize and run backend using Go
+
+
+## First step clone this repository
+    Clone this repository using github desktop or your prefered method. Open the cloned repository
+
+    open two command lines. Run the process for the backend in one and the process for the frontend in the other.
+
+
+
+## How to initalize and run backend using Go
 
     Install go using go version to test if you have it. If not install it from Go's offical website https://go.dev/dl/
 
-    Setup Environment Varibles file. This env file has the usename, password, and clustername of the mongodb database. Contact Yash Choksey for this information.
+    Setup Environment Varibles file. This env file has the usename, password, and clustername of the mongodb database. Contact Yash Choksey for this information. this .env file should be placed in the 
 
     Install all of the dependencies listed in the go.mod file. This can be done simply using the command "go mod tidy"
 
     Verify MongoDB access and make sure your IP address is whitelisted. If not contact a member of the team
 
-    Run the backend using "go run". Make sure you are in the base directory when running this command
-
+    Run the backend using "go run main.go ". Make sure you are in the `SCA_Tournament_Manager` directory when running this command
     
     Alternatively you can run the unit tests for the handlers by navigating to the handlers folder and running "go test"
+
+
+## How to initalize and run the frontend using Angular.js 
+
+    1. Download Node.js/npm: Visit https://nodejs.org/en and download the latest stable version (LTS is recommended for most users).
+
+        Version check by doing  
+            node -v 
+            npm -v
+        in a command line before you proceed
+    2. Install the Angular CLI
+        run this line in the command line:
+            npm install -g @angular/cli
+    3. use cd to navigate to the `sca-tournament-manager` directory
+
+    4. run npm install
+
+    5. run ng serve
+
+    6. open a browser and go to localhost at the specified port
+
+    7. enjoy the product.
 
