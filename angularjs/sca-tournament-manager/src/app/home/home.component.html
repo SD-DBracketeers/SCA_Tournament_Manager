@@ -4,7 +4,17 @@
 
 <!-- Div is a loop that displays each tournament's information through a "tournament-info component" -->
 <div class="container my-5">
-    <div class="row justify-content-center" *ngFor="let tournament of tournaments">
-        <app-tournament-info title="{{tournament.name}}" loc="{{tournament.location}}" date="{{tournament.date}}" description="{{tournament.description}}" kingdomImageId="0" (click)="viewTournament(tournament.tournamentNanoID)"></app-tournament-info>
+  <div class="row">
+    <!-- Loop through tournaments and create a card for each -->
+    <div class="col-xl-4" *ngFor="let tournament of tournaments">
+      <app-tournament-info
+        title="{{ tournament.name }}"
+        loc="{{ tournament.location }}"
+        date="{{ tournament.date }}"
+        description="{{ tournament.description }}"
+        kingdomImageId="0"
+        (click)="viewTournament(tournament.tournamentNanoID)"
+      ></app-tournament-info>
     </div>
+  </div>
 </div>
