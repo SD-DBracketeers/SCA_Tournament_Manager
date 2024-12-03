@@ -10,3 +10,9 @@ li.has-name {
     background-color: #fff;
     outline: 1px solid #ffff00;
 }
+
+li.selected {
+    outline: 2px solid orange; /* Add a red outline */
+    background-color: #fff5e6; /* Optional: change background for emphasis */
+  }
+  

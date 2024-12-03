@@ -28,39 +28,62 @@
     <section id="bracket">
       <div class="container">
         <div class="split split-one">
-          <div class="round" *ngFor="let _ of [].constructor(getRounds(tournament)); let i = index">
-            <div class="round-details">
-              ROUND {{i + 1}}
-            </div>
-            <ul class="matchup" *ngFor="let _ of [].constructor(getNumParticipants(getRounds(tournament),i+1)); let j = index">
+          <div
+            class="round"
+            *ngFor="
+              let _ of [].constructor(getRounds(tournament));
+              let i = index
+            "
+          >
+            <div class="round-details">ROUND {{ i + 1 }}</div>
+            <ul
+              class="matchup"
+              *ngFor="
+                let _ of [].constructor(
+                  getNumParticipants(getRounds(tournament), i + 1)
+                );
+                let j = index
+              "
+            >
               <app-bracket-block
-                tournamentString="{{progressString}}" 
-                participantIndexOne="{{j*2}}" 
-                participantIndexTwo="{{j*2+1}}"
-                round="{{i}}"
-                totalRounds="{{getRounds(tournament)}}">
+                tournamentString="{{ progressString }}"
+                participantIndexOne="{{ j * 2 }}"
+                participantIndexTwo="{{ j * 2 + 1 }}"
+                round="{{ i }}"
+                totalRounds="{{ getRounds(tournament) }}"
+              >
               </app-bracket-block>
             </ul>
           </div>
-          
-        </div> 
+        </div>
 
         <div class="champion">
           <div class="final">
             <i class="fa fa-trophy"></i>
-            <div class="round-details">
-              champion
-            </div>
+            <div class="round-details">champion</div>
             <ul class="matchup championship">
               <li class="team team-top">
                 <!-- &nbsp;<span class="vote-count">&nbsp;</span> -->
-                 {{champion.name}}
+                {{ champion.name }}
               </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-    <button class="update-bracket-btn" (click)="updateTournament()" *ngIf="getLoggedInStatus() == 'logged in'">Update Bracket</button>
+    <button
+      class="update-bracket-btn"
+      (click)="updateTournament()"
+      *ngIf="getLoggedInStatus() == 'logged in'"
+    >
+      Update Bracket
+    </button>
+    <p>
+      Drag a participant's name to mark them as the winner, then press Update
+      Bracket to advance them.
+      <br />
+      <br />
+      Click a participant's name to view their profile.
+    </p>
   </div>
 </div>

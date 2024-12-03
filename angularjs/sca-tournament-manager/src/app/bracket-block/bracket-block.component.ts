@@ -5,16 +5,20 @@ import { GetParticipantsService } from '../get-participants.service';
 @Component({
   selector: 'app-bracket-block',
   templateUrl: './bracket-block.component.html',
-  styleUrls: ['./bracket-block.component.css']
+  styleUrls: ['./bracket-block.component.css'],
 })
 export class BracketBlockComponent implements OnInit {
-
-  constructor(private router: Router, public getParticipantById: GetParticipantsService) {}
+  constructor(
+    private router: Router,
+    public getParticipantById: GetParticipantsService
+  ) {}
 
   //input variables
   @Input() tournamentString: string = '';
-  tournament: {tournamentParticipants:string[], progression:string[]} = 
-    {tournamentParticipants:[], progression:[]};
+  tournament: { tournamentParticipants: string[]; progression: string[] } = {
+    tournamentParticipants: [],
+    progression: [],
+  };
   @Input() participantIndexOne: string = '';
   indexOne: number = 0;
   @Input() participantIndexTwo: string = '';
@@ -22,22 +26,25 @@ export class BracketBlockComponent implements OnInit {
   @Input() round: string = '';
   @Input() totalRounds: string = '1';
 
-  participantOne = {name: '   ', nanoID: ' '};
-  participantTwo = {name: '   ', nanoID: ' '};
+  participantOne = { name: '   ', nanoID: ' ' };
+  participantTwo = { name: '   ', nanoID: ' ' };
 
   // queries the database to get the nanoID and name of the participants
-  getParticipant(tournament: {tournamentParticipants:string[],progression:string[]},
-    index: number, round: string) {
-    const newVal: {name: string, nanoID: string} = {
-      name:'   ',
-      nanoID:' '
-    }
+  getParticipant(
+    tournament: { tournamentParticipants: string[]; progression: string[] },
+    index: number,
+    round: string
+  ) {
+    const newVal: { name: string; nanoID: string } = {
+      name: '   ',
+      nanoID: ' ',
+    };
     // gets the participant directly from the API for the first round
     if (index < tournament.tournamentParticipants.length && round === '0') {
       const nanoID = tournament.tournamentParticipants[index];
-      this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
+      this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
         var entries = Object.entries(data);
-        entries.forEach(key => {
+        entries.forEach((key) => {
           if (key[0] === 'name') newVal.name = key[1];
           else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
         });
@@ -49,9 +56,9 @@ export class BracketBlockComponent implements OnInit {
       if (nanoID == ' ') {
         return newVal;
       }
-      this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
+      this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
         var entries = Object.entries(data);
-        entries.forEach(key => {
+        entries.forEach((key) => {
           if (key[0] === 'name') newVal.name = key[1];
           else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
         });
@@ -63,7 +70,8 @@ export class BracketBlockComponent implements OnInit {
       var count = 1;
       // get the index in the progression for the tournament
       while (count < Number(round)) {
-        progressIndex += Math.pow(2, Number(this.totalRounds)) / Math.pow(2, count);
+        progressIndex +=
+          Math.pow(2, Number(this.totalRounds)) / Math.pow(2, count);
         count++;
       }
       progressIndex += index;
@@ -73,9 +81,9 @@ export class BracketBlockComponent implements OnInit {
         if (nanoID == ' ') {
           return newVal;
         }
-        this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
+        this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
           var entries = Object.entries(data);
-          entries.forEach(key => {
+          entries.forEach((key) => {
             if (key[0] === 'name') newVal.name = key[1];
             else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
           });
@@ -86,11 +94,24 @@ export class BracketBlockComponent implements OnInit {
   }
 
   // save the selected participant
-  onSelect(participant: {name: string, nanoID: string}) {
+  onSelect(participant: { name: string; nanoID: string }) {
     localStorage.setItem('winner', participant.nanoID);
+
+    // Clear the previously selected block's class
+    document
+      .querySelectorAll('.selected')
+      .forEach((el) => el.classList.remove('selected'));
+
+    // Add the 'selected' class to the dragged element
+    const element = document.querySelector(
+      `li.team[data-id="${participant.nanoID}"]`
+    );
+    if (element) {
+      element.classList.add('selected');
+    }
   }
 
-  viewParticipant (nanoID: string) {
+  viewParticipant(nanoID: string) {
     this.router.navigate(['/view-participant'], { state: { nanoId: nanoID } });
   }
 
@@ -98,8 +119,16 @@ export class BracketBlockComponent implements OnInit {
     this.tournament = JSON.parse(this.tournamentString);
     this.indexOne = Number(this.participantIndexOne);
     this.indexTwo = Number(this.participantIndexTwo);
-    this.participantOne = this.getParticipant(this.tournament, this.indexOne, this.round);
-    this.participantTwo = this.getParticipant(this.tournament, this.indexTwo, this.round);
+    this.participantOne = this.getParticipant(
+      this.tournament,
+      this.indexOne,
+      this.round
+    );
+    this.participantTwo = this.getParticipant(
+      this.tournament,
+      this.indexTwo,
+      this.round
+    );
   }
 
   // participant dragging logic
