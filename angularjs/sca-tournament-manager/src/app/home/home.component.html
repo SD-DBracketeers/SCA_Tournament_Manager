@@ -6,7 +6,7 @@
 <div class="container my-5">
   <div class="row">
     <!-- Loop through tournaments and create a card for each -->
-    <div class="col-xl-4" *ngFor="let tournament of tournaments">
+    <div class="col-md-4" *ngFor="let tournament of tournaments">
       <app-tournament-info
         title="{{ tournament.name }}"
         loc="{{ tournament.location }}"

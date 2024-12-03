@@ -1,7 +1,12 @@
 li {
-    background-color: #fff;
     box-shadow: none;
-    outline: 1px solid #ffff00;
+    outline: transparent;
     border-radius: 1px;
     margin-bottom: 5px;
+    background-color: #ffffff7e;
+}
+
+li.has-name {
+    background-color: #fff;
+    outline: 1px solid #ffff00;
 }
