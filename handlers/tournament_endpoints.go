@@ -7,18 +7,18 @@ import (
 	"net/http"
 	"time"
 
+	"api/dbcommands"
 	"api/models"
 	"api/utils"
 
 	"github.com/gorilla/mux"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // GetTournaments retrieves all tournaments from the MongoDB collection
-func GetTournaments(db *mongo.Database) http.HandlerFunc {
+func GetTournaments(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		collection := db.Collection("Tournaments")
 		cursor, err := collection.Find(context.Background(), bson.M{})
@@ -62,7 +62,7 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 }
 
 // CreateTournament inserts a new tournament into the MongoDB collection
-func CreateTournament(db *mongo.Database) http.HandlerFunc {
+func CreateTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournament models.Tournament
 		json.NewDecoder(r.Body).Decode(&tournament)
@@ -87,7 +87,7 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 }
 
 // GetTournament retrieves a tournament by their TournamentNanoID
-func GetTournament(db *mongo.Database) http.HandlerFunc {
+func GetTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the tournamentNanoID from the URL parameters
 		vars := mux.Vars(r)
@@ -128,7 +128,7 @@ func GetTournament(db *mongo.Database) http.HandlerFunc {
 }
 
 // UpdateTournament updates a tournament's information based on their tournamentNanoID
-func UpdateTournament(db *mongo.Database) http.HandlerFunc {
+func UpdateTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the TournamentNanoID from the URL parameters
 

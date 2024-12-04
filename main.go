@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/dbcommands"
 	api "api/handlers"
 	"context"
 	"fmt"
@@ -21,7 +22,7 @@ import (
 var client *mongo.Client
 
 // Initialize MongoDB connection
-func connectDB() (*mongo.Client, error) {
+func connectDB() (*dbcommands.MongoDatabase, error) {
 
 	err := godotenv.Load()
 	if err != nil {
@@ -63,22 +64,19 @@ func connectDB() (*mongo.Client, error) {
 	}
 	fmt.Println("Connected to MongoDB!")
 
-	return client, nil
+	return &dbcommands.MongoDatabase{Client: client.Database(databaseName)}, nil
 }
 
 // Main function to set up routes and start the server
 func main() {
 	// Connect to the MongoDB database
-	client, err := connectDB()
+	db, err := connectDB()
 	if err != nil {
 		log.Fatalf("Error connecting to MongoDB: %v", err)
 	}
 
 	// Create a new router
 	router := mux.NewRouter()
-	// Initialize database for handlers
-	db := client.Database(os.Getenv("MONGODB_DATABASE"))
-
 	// Participant routes
 	router.HandleFunc("/participants", api.GetParticipants(db)).Methods("GET")
 	router.HandleFunc("/participants", api.CreateParticipant(db)).Methods("POST")
