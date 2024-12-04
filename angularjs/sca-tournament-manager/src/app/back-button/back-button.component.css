@@ -1,6 +1,6 @@
 .back-button {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 18px;
   color: #ffff00; /* Yellow color for consistency */
   background: none;
   border: none;
@@ -9,17 +9,8 @@
   margin-bottom: 10px;
 }
 
-.arrow {
-  font-size: 14px;
-}
-
 .back-button:hover {
   cursor: pointer;
-  font-size: 14px;
   color: #ffff00; /* Yellow color for consistency */
   background: #000000;
-  border: none;
-  outline: none;
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
