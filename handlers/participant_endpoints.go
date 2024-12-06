@@ -64,7 +64,11 @@ func GetParticipants(db dbcommands.Database) http.HandlerFunc {
 
 		// Encode the response with the time fields as strings
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participantsResponse)
+		err = json.NewEncoder(w).Encode(participantsResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
+
 	}
 }
 
@@ -72,7 +76,10 @@ func GetParticipants(db dbcommands.Database) http.HandlerFunc {
 func CreateParticipant(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var participant models.Participant
-		json.NewDecoder(r.Body).Decode(&participant)
+		err := json.NewDecoder(r.Body).Decode(&participant)
+		if err != nil {
+			fmt.Print(err)
+		}
 		participant.CreatedAt = time.Now()
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
@@ -132,7 +139,11 @@ func GetParticipant(db dbcommands.Database) http.HandlerFunc {
 
 		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participantResponse)
+		err = json.NewEncoder(w).Encode(participantResponse)
+
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
@@ -185,7 +196,11 @@ func UpdateParticipant(db dbcommands.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Participant updated successfully"))
+		_, err = w.Write([]byte("Participant updated successfully"))
+		if err != nil {
+			fmt.Print(err)
+		}
+
 	}
 }
 
@@ -216,7 +231,10 @@ func CheckLogin(db dbcommands.Database) http.HandlerFunc {
 
 		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode("Login successfull")
+		err = json.NewEncoder(w).Encode("Login successfull")
+		if err != nil {
+			fmt.Print(err)
+		}
 
 	}
 

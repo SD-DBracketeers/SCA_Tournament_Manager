@@ -57,7 +57,10 @@ func GetTournaments(db dbcommands.Database) http.HandlerFunc {
 
 		// Encode the response with the time fields as strings
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tournamentsResponse)
+		err = json.NewEncoder(w).Encode(tournamentsResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
@@ -65,7 +68,10 @@ func GetTournaments(db dbcommands.Database) http.HandlerFunc {
 func CreateTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournament models.Tournament
-		json.NewDecoder(r.Body).Decode(&tournament)
+		err := json.NewDecoder(r.Body).Decode(&tournament)
+		if err != nil {
+			fmt.Print(err)
+		}
 		tournament.CreatedAt = time.Now()
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
@@ -123,7 +129,10 @@ func GetTournament(db dbcommands.Database) http.HandlerFunc {
 
 		// Return the tournament as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tournamentResponse)
+		err = json.NewEncoder(w).Encode(tournamentResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
@@ -176,6 +185,9 @@ func UpdateTournament(db dbcommands.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Tournament updated successfully"))
+		_, err = w.Write([]byte("Tournament updated successfully"))
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
