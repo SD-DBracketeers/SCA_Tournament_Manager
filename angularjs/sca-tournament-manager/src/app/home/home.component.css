@@ -14,19 +14,21 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* Add any necessary spacing between elements */
 .card {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  /* Center the image and adjust sizing */
-  .card-img-top {
-    border-radius: 5px;
-  }
-  
-  /* Optional: Align the description text */
-  .card-text {
-    font-size: 14px;
-  }
-  
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  border-radius: 5px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+app-tournament-info:hover {
+  color: yellow;
+  font-weight: bold;
+  cursor: pointer;
+}

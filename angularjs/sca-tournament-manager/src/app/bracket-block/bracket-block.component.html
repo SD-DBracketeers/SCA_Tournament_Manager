@@ -1,5 +1,7 @@
 <li
   class="team team-top"
+  [ngClass]="{ 'has-name': participantOne.name.trim() !== '' }"
+  [attr.data-id]="participantOne.nanoID"
   draggable="true"
   (dragstart)="onSelect(participantOne)"
   (click)="viewParticipant(participantOne.nanoID)"
@@ -8,6 +10,8 @@
 </li>
 <li
   class="team team-bottom"
+  [ngClass]="{ 'has-name': participantTwo.name.trim() !== '' }"
+  [attr.data-id]="participantTwo.nanoID"
   draggable="true"
   (dragstart)="onSelect(participantTwo)"
   (click)="viewParticipant(participantTwo.nanoID)"

@@ -7,18 +7,18 @@ import (
 	"net/http"
 	"time"
 
+	"api/dbcommands"
 	"api/models"
 	"api/utils"
 
 	"github.com/gorilla/mux"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // GetTournaments retrieves all tournaments from the MongoDB collection
-func GetTournaments(db *mongo.Database) http.HandlerFunc {
+func GetTournaments(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		collection := db.Collection("Tournaments")
 		cursor, err := collection.Find(context.Background(), bson.M{})
@@ -57,15 +57,21 @@ func GetTournaments(db *mongo.Database) http.HandlerFunc {
 
 		// Encode the response with the time fields as strings
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tournamentsResponse)
+		err = json.NewEncoder(w).Encode(tournamentsResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
 // CreateTournament inserts a new tournament into the MongoDB collection
-func CreateTournament(db *mongo.Database) http.HandlerFunc {
+func CreateTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var tournament models.Tournament
-		json.NewDecoder(r.Body).Decode(&tournament)
+		err := json.NewDecoder(r.Body).Decode(&tournament)
+		if err != nil {
+			fmt.Print(err)
+		}
 		tournament.CreatedAt = time.Now()
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
@@ -87,7 +93,7 @@ func CreateTournament(db *mongo.Database) http.HandlerFunc {
 }
 
 // GetTournament retrieves a tournament by their TournamentNanoID
-func GetTournament(db *mongo.Database) http.HandlerFunc {
+func GetTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the tournamentNanoID from the URL parameters
 		vars := mux.Vars(r)
@@ -123,12 +129,15 @@ func GetTournament(db *mongo.Database) http.HandlerFunc {
 
 		// Return the tournament as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tournamentResponse)
+		err = json.NewEncoder(w).Encode(tournamentResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
 // UpdateTournament updates a tournament's information based on their tournamentNanoID
-func UpdateTournament(db *mongo.Database) http.HandlerFunc {
+func UpdateTournament(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the TournamentNanoID from the URL parameters
 
@@ -176,6 +185,9 @@ func UpdateTournament(db *mongo.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Tournament updated successfully"))
+		_, err = w.Write([]byte("Tournament updated successfully"))
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }

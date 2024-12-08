@@ -7,18 +7,18 @@ import (
 	"net/http"
 	"time"
 
+	"api/dbcommands"
 	"api/models"
 	"api/utils"
 
 	"github.com/gorilla/mux"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // GetParticipants retrieves all participants from the MongoDB collection
-func GetParticipants(db *mongo.Database) http.HandlerFunc {
+func GetParticipants(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		collection := db.Collection("Participants")
 		cursor, err := collection.Find(context.Background(), bson.M{})
@@ -64,15 +64,22 @@ func GetParticipants(db *mongo.Database) http.HandlerFunc {
 
 		// Encode the response with the time fields as strings
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participantsResponse)
+		err = json.NewEncoder(w).Encode(participantsResponse)
+		if err != nil {
+			fmt.Print(err)
+		}
+
 	}
 }
 
 // CreateParticipant inserts a new participant into the MongoDB collection
-func CreateParticipant(db *mongo.Database) http.HandlerFunc {
+func CreateParticipant(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var participant models.Participant
-		json.NewDecoder(r.Body).Decode(&participant)
+		err := json.NewDecoder(r.Body).Decode(&participant)
+		if err != nil {
+			fmt.Print(err)
+		}
 		participant.CreatedAt = time.Now()
 		//do something similar to generate the nanoID
 		nanoID, err := utils.GenerateDocumentNanoID()
@@ -94,7 +101,7 @@ func CreateParticipant(db *mongo.Database) http.HandlerFunc {
 }
 
 // GetParticipant retrieves a participant by their ParticipantNanoID
-func GetParticipant(db *mongo.Database) http.HandlerFunc {
+func GetParticipant(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the participantNanoID from the URL parameters
 		vars := mux.Vars(r)                                // Get URL parameters using gorilla/mux
@@ -132,12 +139,16 @@ func GetParticipant(db *mongo.Database) http.HandlerFunc {
 
 		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(participantResponse)
+		err = json.NewEncoder(w).Encode(participantResponse)
+
+		if err != nil {
+			fmt.Print(err)
+		}
 	}
 }
 
 // UpdateParticipant updates a participant's information based on their ParticipantNanoID
-func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
+func UpdateParticipant(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Get the ParticipantNanoID from the URL parameters
 
@@ -185,11 +196,15 @@ func UpdateParticipant(db *mongo.Database) http.HandlerFunc {
 
 		// Respond with a success message
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Participant updated successfully"))
+		_, err = w.Write([]byte("Participant updated successfully"))
+		if err != nil {
+			fmt.Print(err)
+		}
+
 	}
 }
 
-func CheckLogin(db *mongo.Database) http.HandlerFunc {
+func CheckLogin(db dbcommands.Database) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)              // Get URL parameters using gorilla/mux
 		username, ok := vars["username"] // Extract participantNanoID from the route
@@ -216,7 +231,10 @@ func CheckLogin(db *mongo.Database) http.HandlerFunc {
 
 		// Return the participant as JSON
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode("Login successfull")
+		err = json.NewEncoder(w).Encode("Login successfull")
+		if err != nil {
+			fmt.Print(err)
+		}
 
 	}
 

@@ -9,6 +9,9 @@
   margin-top: 10px; /* Adjusts spacing between the Back and Add buttons */
 }
 
+.add-button-container button:hover {
+  background-color: #ffc107;
+}
 
 .container {
   max-width: 800px;
@@ -37,6 +40,10 @@
 }
 .table tbody tr:nth-child(odd) {
   background-color: #4d4f36; /* Lighter color */
+}
+
+.table tbody:hover {
+  cursor: pointer;
 }
 
 .table thead tr {
