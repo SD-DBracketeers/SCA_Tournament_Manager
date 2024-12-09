@@ -9,10 +9,10 @@ import { GetParticipantsService } from '../get-participants.service';
 })
 export class NewParticipantComponent {
   constructor(private router: Router, public getParticipant: GetParticipantsService) {}
-  name: string = '';
-  rank: string = '';
-  combatType: string = '';
-  kingdom: string = '';
+  name = '';
+  rank = '';
+  combatType = '';
+  kingdom = '';
   verificationDate: Date = new Date;
 
   submitForm() {

@@ -14,17 +14,17 @@ export class BracketBlockComponent implements OnInit {
   ) {}
 
   //input variables
-  @Input() tournamentString: string = '';
+  @Input() tournamentString = '';
   tournament: { tournamentParticipants: string[]; progression: string[] } = {
     tournamentParticipants: [],
     progression: [],
   };
-  @Input() participantIndexOne: string = '';
-  indexOne: number = 0;
-  @Input() participantIndexTwo: string = '';
-  indexTwo: number = 0;
-  @Input() round: string = '';
-  @Input() totalRounds: string = '1';
+  @Input() participantIndexOne = '';
+  indexOne = 0;
+  @Input() participantIndexTwo = '';
+  indexTwo = 0;
+  @Input() round = '';
+  @Input() totalRounds = '1';
 
   participantOne = { name: '   ', nanoID: ' ' };
   participantTwo = { name: '   ', nanoID: ' ' };
@@ -43,7 +43,7 @@ export class BracketBlockComponent implements OnInit {
     if (index < tournament.tournamentParticipants.length && round === '0') {
       const nanoID = tournament.tournamentParticipants[index];
       this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
-        var entries = Object.entries(data);
+        const entries = Object.entries(data);
         entries.forEach((key) => {
           if (key[0] === 'name') newVal.name = key[1];
           else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
@@ -57,7 +57,7 @@ export class BracketBlockComponent implements OnInit {
         return newVal;
       }
       this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
-        var entries = Object.entries(data);
+        const entries = Object.entries(data);
         entries.forEach((key) => {
           if (key[0] === 'name') newVal.name = key[1];
           else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
@@ -66,8 +66,8 @@ export class BracketBlockComponent implements OnInit {
       return newVal;
       // gets the participants for the following rounds
     } else if (Number(round) > 1) {
-      var progressIndex = 0;
-      var count = 1;
+      let progressIndex = 0;
+      let count = 1;
       // get the index in the progression for the tournament
       while (count < Number(round)) {
         progressIndex +=
@@ -82,7 +82,7 @@ export class BracketBlockComponent implements OnInit {
           return newVal;
         }
         this.getParticipantById.getParticipantByID(nanoID).subscribe((data) => {
-          var entries = Object.entries(data);
+          const entries = Object.entries(data);
           entries.forEach((key) => {
             if (key[0] === 'name') newVal.name = key[1];
             else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];

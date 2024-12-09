@@ -15,9 +15,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a routerLink="/bracket">Last Bracket</a></li>
             <li><a routerLink="/search-participants">Search Participants</a></li>
-            <li><a style="color: #FFFF00;" routerLink="/create-tournament" *ngIf="getLoggedInStatus() == 'logged in'">Create Tournament</a></li>
-            <li><a routerLink="/" (click)="logout()" *ngIf="getLoggedInStatus() == 'logged in'">Logout</a></li>
-            <li><a routerLink="/login" *ngIf="getLoggedInStatus() == null">Login</a></li>
+            <li><a style="color: #FFFF00;" routerLink="/create-tournament" *ngIf="getLoggedInStatus() === 'logged in'">Create Tournament</a></li>
+            <li><a routerLink="/" (click)="logout()" *ngIf="getLoggedInStatus() === 'logged in'">Logout</a></li>
+            <li><a routerLink="/login" *ngIf="getLoggedInStatus() === null">Login</a></li>
         </ul>
     </div>
 </nav>

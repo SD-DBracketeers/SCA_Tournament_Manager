@@ -1,17 +1,15 @@
-import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-listbox',
   templateUrl: './listbox.component.html',
   styleUrls: ['./listbox.component.css']
 })
-export class ListboxComponent implements OnInit, AfterViewInit {
+export class ListboxComponent implements AfterViewInit {
   container: HTMLElement | null = null;
   items: NodeListOf<HTMLElement> | null = null;
 
   constructor(private el: ElementRef) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     // Initialize container and items once the view has initialized

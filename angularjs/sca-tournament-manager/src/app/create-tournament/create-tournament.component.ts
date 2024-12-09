@@ -10,23 +10,23 @@ import { GetTournamentService } from '../get-tournament.service';
 export class CreateTournamentComponent implements OnInit {
   constructor(private router: Router, public getTournament: GetTournamentService) {}
   // variables in the form
-  name: string = '';
-  eventType: string = '';
-  kingdom: string = '';
-  location: string = '';
-  description: string = '';
+  name = '';
+  eventType = '';
+  kingdom = '';
+  location = '';
+  description = '';
   date: Date = new Date;
   participants: [] = [];
   participantNames: [] = [];
 
   // Error flags
-  nameError: boolean = false;
-  eventTypeError: boolean = false;
-  kingdomError: boolean = false;
-  locationError: boolean = false;
-  dateError: boolean = false;
-  descriptionError: boolean = false;
-  participantsError: boolean = false;
+  nameError = false;
+  eventTypeError = false;
+  kingdomError = false;
+  locationError = false;
+  dateError = false;
+  descriptionError = false;
+  participantsError = false;
 
   // navigate to select participants
   navigateToParticipants() {
@@ -90,7 +90,7 @@ export class CreateTournamentComponent implements OnInit {
     localStorage.removeItem("participantNames");
     localStorage.removeItem("tournamentFormData");
     localStorage.removeItem("prevUrl");
-    var nanoID = localStorage.getItem('nanoID');
+    const nanoID = localStorage.getItem('nanoID');
     this.router.navigate(['/bracket'], { state: { nanoId: nanoID } });
   }
 

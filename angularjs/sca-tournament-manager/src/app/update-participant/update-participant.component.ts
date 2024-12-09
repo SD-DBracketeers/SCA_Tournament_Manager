@@ -9,10 +9,10 @@ import { GetParticipantsService } from '../get-participants.service';
 })
 export class UpdateParticipantComponent implements OnInit {
   constructor(private router: Router, public getParticipant: GetParticipantsService) {}
-  name: string = '';
-  rank: string = '';
-  combatType: string = '';
-  kingdom: string = '';
+  name = '';
+  rank = '';
+  combatType = '';
+  kingdom = '';
   verificationDate: Date = new Date;
   nav = this.router.getCurrentNavigation();
   state = this.nav?.extras?.state ?? null;

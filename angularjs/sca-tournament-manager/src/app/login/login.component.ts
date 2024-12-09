@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 
@@ -9,14 +9,14 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent {
   constructor(private router: Router, private login: LoginService) {}
-  username: string = '';
-  password: string = '';
-  loggedIn: string = '';
+  username = '';
+  password = '';
+  loggedIn = '';
 
   onSubmit(): void {
-    this.login.doLogin(this.username, this.password).subscribe((data) =>{
-      var entries = Object.entries(data);
-      entries.forEach(key => {
+    this.login.doLogin(this.username, this.password).subscribe((data) => {
+      // Iterate through the entries if necessary, or process data directly
+      Object.entries(data).forEach(() => {
         this.loggedIn = 'logged in';
         localStorage.setItem('loggedIn', this.loggedIn);
         this.router.navigate(['/']);

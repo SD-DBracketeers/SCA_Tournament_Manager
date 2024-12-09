@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // get all tournament information
     this.getTournaments.getTournaments().subscribe((data) =>{
-      var entries = Object.entries(data);
+      const entries = Object.entries(data);
       entries.forEach(key => {
         this.tournaments.push(key[1]);
       });
@@ -29,6 +29,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  kingdomImageUrl: string = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
+  kingdomImageUrl = 'https://ansteorra.org/wp-content/themes/Ansteorra_2024/img/kingdom_shield.png';
 
 }

@@ -15,13 +15,13 @@ export class SearchParticipantsComponent implements OnInit {
     this.location.back(); // Navigate to the previous page for back arrow
   }
 
-  searchQuery: string = ''; // Bound to the search input field
+  searchQuery = ''; // Bound to the search input field
 
   participants: {name: string, rank: string, combatType: string, verificationExpirationDate: string, 
     kingdom: string, participantNanoID: string, isFound: boolean}[] = [];
   participantsList: string[] = [];
   participantNames: string[] = [];
-  previousUrl: string = '';
+  previousUrl = '';
 
   // add or remove participants from the tournament that is being created
   toggleParticipants (nanoID: string) {
@@ -33,8 +33,8 @@ export class SearchParticipantsComponent implements OnInit {
       this.participantsList = parsedData;
       // remove participant from tournament
       if (this.participantsList.includes(nanoID)) {
-        let newList = this.participantsList.filter(item => item !== nanoID);
-        let newNames = this.participantNames.filter(item => item !== participant.name);
+        const newList = this.participantsList.filter(item => item !== nanoID);
+        const newNames = this.participantNames.filter(item => item !== participant.name);
         localStorage.setItem('participantsList', JSON.stringify(newList));
         localStorage.setItem('participantNames', JSON.stringify(newNames));
         this.participantNames = newNames;
@@ -100,7 +100,7 @@ export class SearchParticipantsComponent implements OnInit {
   ngOnInit(): void {
     // get the whole list of participants
     this.getParticipants.getParticipants().subscribe((data) =>{
-      var entries = Object.entries(data);
+      const entries = Object.entries(data);
       entries.forEach(key => {
         this.getParticipantsList();
         if (this.participantsList.includes(key[1].participantNanoID)) {

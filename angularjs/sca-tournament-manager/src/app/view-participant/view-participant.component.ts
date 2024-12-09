@@ -13,18 +13,18 @@ export class ViewParticipantComponent implements OnInit {
     public getParticipantById: GetParticipantsService) {}
   nav = this.router.getCurrentNavigation();
   state = this.nav?.extras?.state ?? null;
-  name: string = '';
-  rank: string = '';
-  combatType: string = '';
-  kingdom: string = '';
-  wins: number = 0;
-  losses: number = 0;
+  name = '';
+  rank = '';
+  combatType = '';
+  kingdom = '';
+  wins = 0;
+  losses = 0;
   tournaments: string[] = [];
   result: { tournamentNanoID: string; name: string; date: string }[] = [];
 
   getSingleTournament (tournamentNanoID: string) {
     this.getTournament.getTournament(tournamentNanoID ?? null).subscribe((data) =>{
-      var entries = Object.entries(data);
+      const entries = Object.entries(data);
       const newEntry: { tournamentNanoID: string; name: string; date: string } = {
         name: '',
         date: '',
@@ -43,7 +43,7 @@ export class ViewParticipantComponent implements OnInit {
 
   getParticipant () {
     this.getParticipantById.getParticipantByID(this.state?.['nanoId'] ?? null).subscribe((data) => {
-      var entries = Object.entries(data);
+      const entries = Object.entries(data);
       entries.forEach(key => {
         if (key[0] === 'name') this.name = key[1];
         else if (key[0] === 'rank') this.rank = key[1];
@@ -53,7 +53,7 @@ export class ViewParticipantComponent implements OnInit {
         else if (key[0] === 'losses') this.losses = key[1];
         else if (key[0] === 'tournamentParticipantIn') this.tournaments = key[1];
       });
-      var count = 0;
+      let count = 0;
       while (count < this.tournaments.length) {
         console.log(this.tournaments);
         this.getSingleTournament(this.tournaments[count]);

@@ -3,8 +3,11 @@
   [ngClass]="{ 'has-name': participantOne.name.trim() !== '' }"
   [attr.data-id]="participantOne.nanoID"
   draggable="true"
+  tabindex="0"
   (dragstart)="onSelect(participantOne)"
   (click)="viewParticipant(participantOne.nanoID)"
+  (keydown.enter)="viewParticipant(participantOne.nanoID)"
+  (keydown.space)="viewParticipant(participantOne.nanoID)"
 >
   {{ participantOne.name }}<span class="score"></span>
 </li>
@@ -13,8 +16,11 @@
   [ngClass]="{ 'has-name': participantTwo.name.trim() !== '' }"
   [attr.data-id]="participantTwo.nanoID"
   draggable="true"
+  tabindex="0"
   (dragstart)="onSelect(participantTwo)"
   (click)="viewParticipant(participantTwo.nanoID)"
+  (keydown.enter)="viewParticipant(participantTwo.nanoID)"
+  (keydown.space)="viewParticipant(participantTwo.nanoID)"
 >
   {{ participantTwo.name }}<span class="score"></span>
 </li>

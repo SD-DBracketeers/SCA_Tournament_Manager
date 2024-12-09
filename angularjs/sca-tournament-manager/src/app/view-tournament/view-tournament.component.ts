@@ -18,9 +18,9 @@ export class ViewTournamentComponent implements OnInit {
   state = this.nav?.extras?.state ?? null;
   tournaments: {name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, 
     kingdom:string, tournamentParticipants:string[], progression:string[]}[] = []; 
-  progressString: string = '';
-  currentPosition: number = 0;
-  champion: {name: String, nanoID: String} = {name: '', nanoID: ''};
+  progressString = '';
+  currentPosition = 0;
+  champion: {name: string, nanoID: string} = {name: '', nanoID: ''};
 
   // get the number of tournament rounds
   getRounds(tournament: {name: string, location: string, date: string, 
@@ -60,18 +60,18 @@ export class ViewTournamentComponent implements OnInit {
     }
   }
   getChamp() {
-    var progressIndex = 0;
-    var totalRounds = this.getRounds(this.tournaments[0]);
-    var count = 1;
+    let progressIndex = 0;
+    const totalRounds = this.getRounds(this.tournaments[0]);
+    let count = 1;
     while (count < totalRounds) {
       progressIndex += Math.pow(2, totalRounds) / Math.pow(2, count);
       count++;
     }
-    var newVal = {name: '', nanoID: ''};
+    const newVal = {name: '', nanoID: ''};
     if (this.tournaments[0].progression.length-1 >= progressIndex) {
-      var nanoID = this.tournaments[0].progression[progressIndex];
+      const nanoID = this.tournaments[0].progression[progressIndex];
       this.getParticipantById.getParticipantByID(nanoID).subscribe((data)=> {
-        var entries = Object.entries(data);
+        const entries = Object.entries(data);
         entries.forEach(key => {
           if (key[0] === 'name') newVal.name = key[1];
           else if (key[0] === 'participantNanoID') newVal.nanoID = key[1];
@@ -87,7 +87,7 @@ export class ViewTournamentComponent implements OnInit {
   ngOnInit(): void {
     // get tournament information
     this.getTournament.getTournament(this.state?.['nanoId'] ?? null).subscribe((data) =>{
-      var entries = Object.entries(data);
+      const entries = Object.entries(data);
       const newEntry: { name: string, location: string, date: string, description: string, eventType: string, tournamentNanoID: string, kingdom:string, tournamentParticipants:string[], progression:string[] } = {
         name: '',
         location: '',

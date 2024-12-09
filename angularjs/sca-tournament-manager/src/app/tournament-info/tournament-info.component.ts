@@ -7,13 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
   
 })
 export class TournamentInfoComponent implements OnInit {
-  @Input() kingdomImageId: string = '0';
-  kingdomImageUrl: string = '';
-  @Input() title: string = '';
-  @Input() loc: string = '';
-  @Input() date: string = '';
-  @Input() description: string = '';
-  @Input() nanoId: string = '';
+  @Input() kingdomImageId = '0';
+  kingdomImageUrl = '';
+  @Input() title = '';
+  @Input() loc = '';
+  @Input() date = '';
+  @Input() description = '';
+  @Input() nanoId = '';
   constructor() { }
 
   ngOnInit(): void {
