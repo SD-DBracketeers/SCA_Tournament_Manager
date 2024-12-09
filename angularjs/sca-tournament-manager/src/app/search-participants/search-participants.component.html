@@ -3,9 +3,9 @@
     <app-back-button></app-back-button>
   </div>
 
-  <div class="add-button-container">
+  <div class="add-button-container" *ngIf="getLoggedInStatus() === 'logged in'">
     <button class="btn btn-warning mt-3" routerLink="/new-participant">
-      Add new participant to database
+      Add new participant
     </button>
   </div>
 
