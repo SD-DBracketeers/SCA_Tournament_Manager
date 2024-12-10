@@ -13,7 +13,7 @@ Best practices:
         golang:
     https://google.github.io/styleguide/go/guide
     https://google.github.io/styleguide/go/decisions
-        AngularJS:
+        Angular:
     https://angular.dev/style-guide#style-vocabulary
 
     Install the extension Prettier for VSCode HTML, CSS, and Javascript/Typescript formatting
@@ -26,14 +26,14 @@ Best practices:
         Project Tracker: trello
     
     Languages and database:
-        Languages:  Angular JS, golang
+        Languages:  Angular, golang
         Database: mongoDB
 
 
-Third-party resources:
-    https://material.angular.io/components/input/overview
-    https://material.angular.io/components/datepicker/overview
-    https://material.angular.io/components/form-field/overview
+    Third-party resources:
+        https://material.angular.io/components/input/overview
+        https://material.angular.io/components/datepicker/overview
+        https://material.angular.io/components/form-field/overview
 
 
 
@@ -59,7 +59,7 @@ Third-party resources:
     Alternatively you can run the unit tests for the handlers by navigating to the handlers folder and running "go test"
 
 
-## How to initalize and run the frontend using Angular.js 
+## How to initalize and run the frontend using Angular
 
     1. Download Node.js/npm: Visit https://nodejs.org/en and download the latest stable version (LTS is recommended for most users).
 
@@ -70,13 +70,13 @@ Third-party resources:
     2. Install the Angular CLI
         run this line in the command line:
             npm install -g @angular/cli
-    3. use cd to navigate to the `sca-tournament-manager` directory
+    3. Use cd to navigate to the `sca-tournament-manager` directory
 
-    4. run npm install
+    4. Run npm install
 
-    5. run ng serve
+    5. Run ng serve
 
-    6. open a browser and go to localhost at the specified port
+    6. Open a browser and go to localhost at the specified port
 
-    7. enjoy the product.
+    7. Enjoy the product.
 
